@@ -19,11 +19,11 @@ class Post < ActiveRecord::Base
                     :s3_credentials => "#{Rails.root}/config/s3.yml"
 
   scope :drafts, lambda { 
-    where("published_at IS NULL AND publishable = 1")
+    where("published_at IS NULL AND publishable = true")
   }
 
   scope :backlog, lambda {
-    where("published_at IS NULL AND publishable = 0")
+    where("published_at IS NULL AND publishable = false")
   }
 
   scope :published, lambda { 
