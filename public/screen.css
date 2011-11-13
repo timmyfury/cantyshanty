@@ -26,8 +26,14 @@ body { margin: 0; padding: 0; }
 		#pagination .prev { float: left; }
 		#pagination .next { float: right; }
 		#pagination .copyright { margin-top: 80px; }
-		
-		
+
+.field { font-size: 20px; padding: 15px 0; }
+.field label { display: block; }
+.field input { font-size: 20px; padding: 5px; }
+
+.actions { padding: 15px 0; }
+.actions input { font-size: 30px; }
+
 .entry:after {
 	content: ".";
 	display: block;

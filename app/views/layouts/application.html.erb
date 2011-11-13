@@ -21,7 +21,7 @@
       <h2><a href="mailto:info@cantyshanty.com" class="email">Email</a></h2>
     </div>
     <div id="content">
-      <%= yield %>
+		<%= content_for?(:content) ? yield(:content) : yield %>
     </div>
     
     <script type="text/javascript">
