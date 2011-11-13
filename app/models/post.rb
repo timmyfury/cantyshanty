@@ -18,17 +18,11 @@ class Post < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/s3.yml"
 
-  scope :drafts, lambda { 
-    where("published_at IS NULL AND publishable = true")
-  }
+  scope :drafts, where("published_at IS NULL AND publishable = ?", true)
 
-  scope :backlog, lambda {
-    where("published_at IS NULL AND publishable = false")
-  }
+  scope :backlog, where('published_at IS NULL AND publishable = ?', false)
 
-  scope :published, lambda { 
-    where("posts.published_at IS NOT NULL AND posts.published_at <= ?", Time.zone.now)
-  }
+  scope :published, where("posts.published_at IS NOT NULL AND posts.published_at <= ?", Time.zone.now)
 
   scope :recent, order("published_at DESC")
   
