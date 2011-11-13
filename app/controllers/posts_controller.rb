@@ -5,11 +5,11 @@ class PostsController < ApplicationController
     @status = params[:status] || 'draft'
 
     if @status == 'published'
-      @posts = Post.published.paginate(:page => params[:page], :per_page => 30)
+      @posts = Post.published.recently_updated.paginate(:page => params[:page], :per_page => 30)
     elsif @status == 'backlog'
-      @posts = Post.backlog.paginate(:page => params[:page], :per_page => 30)
+      @posts = Post.backlog.recently_updated.paginate(:page => params[:page], :per_page => 30)
     else # draft
-      @posts = Post.drafts.paginate(:page => params[:page], :per_page => 30)
+      @posts = Post.drafts.recently_updated.paginate(:page => params[:page], :per_page => 30)
     end
 
     @published_count = Post.published.count
