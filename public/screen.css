@@ -13,8 +13,11 @@ body { margin: 0; padding: 0; }
 		.entry h2 a:hover, .entry h2 a:focus { background: #1c3260; }
 		.entry ul { margin: 0 0 20px 0; padding: 0; }
 			.entry ul li { color: #999; display: inline; list-style-type: none; padding: 0 5px 0 0; }
+			.entry ul li a { color: #999; }
+				.entry ul li a:hover, .entry ul li a:focus { background: #1c3260; color: #fff; }
 	a { color: #1c3260; text-decoration: none; }
-		a:hover, a:focus { background: #1c3260; color: #fff;}
+		a:hover, a:focus { background: #1c3260; color: #fff; }
 	#pagination { border-top: 20px solid #ccc; height: 200px; background: #eee; text-align: center; font-size: 30px; position: relative; clear: both; display: block; margin: 0; padding: 20px; }
-		#pagination .prev { float: left;	}		
+		#pagination .prev { float: left; }
 		#pagination .next { float: right; }
+		#pagination .copyright { margin-top: 80px; }

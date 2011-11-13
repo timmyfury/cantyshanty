@@ -4,3 +4,10 @@
 	<%= image_tag @post.image.url(:large) %>
 </div>
 
+<div id="pagination">
+	<% if @post.previous %><a class="prev" href="<%= short_url(:slug => @post.previous.slug) %>">&laquo; <%= @post.previous.title %></a><% end %>
+	<% if @post.next %><a class="next" href="<%= short_url(:slug => @post.next.slug) %>"><%= @post.next.title %> &raquo;</a><% end %>
+	
+	<p class="copyright">&copy; Images are copyright of their respective owners. I just don't know who they are.</p>
+</div>
+
