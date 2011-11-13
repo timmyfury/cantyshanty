@@ -24,7 +24,15 @@ class Post < ActiveRecord::Base
     where("posts.published_at IS NOT NULL AND posts.published_at <= ?", Time.zone.now)
   }
 
-  scope :recent, order("posts.published_at DESC")
+  scope :recent, order("published_at DESC")
+  
+  def next
+    Post.published.where("published_at > ?", self.published_at).order("published_at").last
+  end
+
+  def previous
+    Post.published.where("published_at < ?", self.published_at).order("published_at").last
+  end
 
   def publish
     self.published_at = Time.now
