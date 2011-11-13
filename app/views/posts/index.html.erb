@@ -1,29 +1,20 @@
 <h1>Unpublished Posts</h1>
 
-<p><%= link_to 'New Post', new_post_path %></p>
+<p>
+	<%= page_entries_info @posts %>
+	<%= will_paginate @posts %>
+</p>
 
-<table>
-  <tr>
-    <th>Thumb</th>
-    <th>Title</th>
-    <th>Tags</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+<div>
 <% @posts.each do |post| %>
-  <tr>
-    <td><%= image_tag post.image.url(:thumb) %></td>
-    <td><%= post.title %></td>
-    <td><%= post.tags.count %></td>
-    <td><%= link_to 'Show', post %></td>
-    <td><%= link_to 'Edit', edit_post_path(post) %></td>
-    <td><%= link_to 'Destroy', post, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+	<div style="width:200px;height:200px; float: left; padding: 10px; text-align:center">
+	<%= link_to image_tag(post.image.url(:small)), post %></div>
 <% end %>
-</table>
+</div>
 
-<br />
+<p style="clear:both;">
+	<%= page_entries_info @posts %>
+	<%= will_paginate @posts %>
+</p>
 
-
+<p><%= link_to 'New Post', new_post_path %></p>
