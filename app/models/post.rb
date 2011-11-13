@@ -24,6 +24,8 @@ class Post < ActiveRecord::Base
 
   scope :published, where("posts.published_at IS NOT NULL AND posts.published_at <= ?", Time.zone.now)
 
+  scope :recently_updated, order("updated_at DESC")
+
   scope :recent, order("published_at DESC")
   
   def next
