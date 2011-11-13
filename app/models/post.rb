@@ -3,6 +3,8 @@ require 'base58'
 
 class Post < ActiveRecord::Base
 
+  before_save :check_publishable
+
   acts_as_taggable
 
   has_attached_file :image,
@@ -16,8 +18,12 @@ class Post < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/s3.yml"
 
-  scope :unpublished, lambda { 
-    where("posts.published_at IS NULL")
+  scope :drafts, lambda { 
+    where("published_at IS NULL AND publishable = 1")
+  }
+
+  scope :backlog, lambda {
+    where("published_at IS NULL AND publishable = 0")
   }
 
   scope :published, lambda { 
@@ -34,14 +40,18 @@ class Post < ActiveRecord::Base
     Post.published.where("published_at < ?", self.published_at).order("published_at").last
   end
 
-  def publish
-    self.published_at = Time.now
-    self.slug = Base58.encode(self.id)
-    self.save
+  def check_publishable
+    if !self.title.empty? && self.tags.count > 0
+      self.publishable = true
+    end
   end
 
-  def publishable
-    return self.title != nil && self.title != '' && self.tags.count > 0
+  def publish
+    if self.publishable
+      self.published_at = Time.now
+      self.slug = Base58.encode(self.id)
+      self.save
+    end
   end
 
 end

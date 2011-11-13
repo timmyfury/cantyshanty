@@ -4,6 +4,8 @@ Cantyshanty::Application.routes.draw do
   match '_:slug' => 'home#image', :as => :short
   match 'tc/:slug' => 'home#legacy', :as => :legacy
 
+  match 'posts/:status' => 'posts#index', :constraints => { :status => /drafts|backlog|published/ }, :as => :list
+
   resources :posts do
     member do
       put 'publish'

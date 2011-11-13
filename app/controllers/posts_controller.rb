@@ -2,7 +2,19 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.unpublished.paginate(:page => params[:page], :per_page => 30)
+    @status = params[:status] || 'draft'
+
+    if @status == 'published'
+      @posts = Post.published.paginate(:page => params[:page], :per_page => 30)
+    elsif @status == 'backlog'
+      @posts = Post.backlog.paginate(:page => params[:page], :per_page => 30)
+    else # draft
+      @posts = Post.drafts.paginate(:page => params[:page], :per_page => 30)
+    end
+
+    @published_count = Post.published.count
+    @backlog_count = Post.backlog.count
+    @draft_count = Post.drafts.count
 
     respond_to do |format|
       format.html # index.html.erb

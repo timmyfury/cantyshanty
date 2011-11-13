@@ -1,20 +1,22 @@
-<h1>Unpublished Posts</h1>
-
-<p>
-	<%= page_entries_info @posts %>
-	<%= will_paginate @posts %>
-</p>
-
-<div>
-<% @posts.each do |post| %>
-	<div style="width:200px;height:200px; float: left; padding: 10px; text-align:center">
-	<%= link_to image_tag(post.image.url(:small)), post %></div>
-<% end %>
+<div class="navigation">
+	<ul>
+		<li class="<% if @status == 'drafts' %>active<% end %>"><a href="<%= list_url(:status => 'drafts') %>">Drafts (<%= @draft_count %>)</a></li>
+		<li class="<% if @status == 'backlog' %>active<% end %>"><a href="<%= list_url(:status => 'backlog') %>">Backlog (<%= @backlog_count %>)</a></li>
+		<li class="<% if @status == 'published' %>active<% end %>"><a href="<%= list_url(:status => 'published') %>">Published (<%= @published_count %>)</a></li>
+		<li><%= link_to 'Upload new image', new_post_path %></li>
+	</ul>
 </div>
 
-<p style="clear:both;">
-	<%= page_entries_info @posts %>
-	<%= will_paginate @posts %>
-</p>
+<div class="entry">
+	<h2><%= @status.capitalize %></h2>
+	<% @posts.each do |post| %>
+		<div style="width:400px;height:400px; float: left; padding: 10px; text-align:center">
+			<%= link_to image_tag(post.image.url(:medium)), post %>
+		</div>
+	<% end %>
+</div>
 
-<p><%= link_to 'New Post', new_post_path %></p>
+
+<div id="pagination">
+	<%= will_paginate @posts %>
+</div>
