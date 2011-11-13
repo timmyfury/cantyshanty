@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   layout "admin"
   
+  before_filter :authenticate
   before_filter :get_post_counts
   
   def get_post_counts
@@ -111,4 +112,12 @@ class PostsController < ApplicationController
       format.json { head :ok }
     end
   end
+
+  protected
+    def authenticate
+      authenticate_or_request_with_http_basic do |username, password|
+        username == "donkey" && password == "h33haw"
+      end
+    end
+
 end
