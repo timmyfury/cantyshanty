@@ -1,0 +1,9 @@
+development:
+  bucket: cantyshanty-development
+  access_key_id: 07R3EPKXCD8620G97KG2
+  secret_access_key: XMsfbfklysXR9E8TM1oKNc7WF/G+2Xy77Zaddvs7
+
+production:
+  bucket: cantyshanty-production
+  access_key_id: 07R3EPKXCD8620G97KG2
+  secret_access_key: XMsfbfklysXR9E8TM1oKNc7WF/G+2Xy77Zaddvs7

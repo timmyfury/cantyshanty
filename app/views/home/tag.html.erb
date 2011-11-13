@@ -1,0 +1,5 @@
+<h1>Images tagged with: <%= @tag %></h1>
+
+<% @posts.each do |post| %>
+	<a href="<%= short_url(:slug => post.slug) %>"><%= image_tag post.image.url(:thumb) %></a>
+<% end %>
