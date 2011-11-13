@@ -36,9 +36,13 @@ class Post < ActiveRecord::Base
     Post.published.where("published_at < ?", self.published_at).order("published_at").last
   end
 
-  def check_publishable
-    if !self.title.empty? && self.tags.count > 0
-      self.publishable = true
+  def status
+    if self.published_at
+      'published'
+    elsif self.publishable and !self.published_at
+      'drafts'
+    elsif !self.publishable and !self.published_at
+      'backlog'
     end
   end
 
@@ -48,6 +52,13 @@ class Post < ActiveRecord::Base
       self.slug = Base58.encode(self.id)
       self.save
     end
+  end
+
+  private
+    def check_publishable
+      if self.title && !self.title.empty?
+        self.publishable = true
+      end
   end
 
 end

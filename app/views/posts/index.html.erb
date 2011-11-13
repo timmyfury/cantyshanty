@@ -1,12 +1,3 @@
-<div class="navigation">
-	<ul>
-		<li class="<% if @status == 'drafts' %>active<% end %>"><a href="<%= list_url(:status => 'drafts') %>">Drafts (<%= @draft_count %>)</a></li>
-		<li class="<% if @status == 'backlog' %>active<% end %>"><a href="<%= list_url(:status => 'backlog') %>">Backlog (<%= @backlog_count %>)</a></li>
-		<li class="<% if @status == 'published' %>active<% end %>"><a href="<%= list_url(:status => 'published') %>">Published (<%= @published_count %>)</a></li>
-		<li><%= link_to 'Upload new image', new_post_path %></li>
-	</ul>
-</div>
-
 <div class="entry">
 	<h2><%= @status.capitalize %></h2>
 	<% @posts.each do |post| %>

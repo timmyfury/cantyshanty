@@ -1,8 +1,18 @@
 class PostsController < ApplicationController
+  layout "admin"
+  
+  before_filter :get_post_counts
+  
+  def get_post_counts
+    @published_count = Post.published.count
+    @backlog_count = Post.backlog.count
+    @draft_count = Post.drafts.count
+  end
+  
   # GET /posts
   # GET /posts.json
   def index
-    @status = params[:status] || 'draft'
+    @status = params[:status] || 'drafts'
 
     if @status == 'published'
       @posts = Post.published.recently_updated.paginate(:page => params[:page], :per_page => 30)
@@ -11,10 +21,6 @@ class PostsController < ApplicationController
     else # draft
       @posts = Post.drafts.recently_updated.paginate(:page => params[:page], :per_page => 30)
     end
-
-    @published_count = Post.published.count
-    @backlog_count = Post.backlog.count
-    @draft_count = Post.drafts.count
 
     respond_to do |format|
       format.html # index.html.erb
@@ -26,6 +32,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @status = @post.status
 
     respond_to do |format|
       format.html # show.html.erb
@@ -37,16 +44,12 @@ class PostsController < ApplicationController
   # GET /posts/new.json
   def new
     @post = Post.new
+    @status = 'upload'
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @post }
     end
-  end
-
-  # GET /posts/1/edit
-  def edit
-    @post = Post.find(params[:id])
   end
 
   # POST /posts
@@ -75,7 +78,7 @@ class PostsController < ApplicationController
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { head :ok }
       else
-        format.html { render action: "edit" }
+        format.html { render @post }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
