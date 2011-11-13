@@ -1,0 +1,20 @@
+body { margin: 0; padding: 0; }
+#header { background: #1c3260; clear: both; display: block; margin: 0 0 20px; padding: 20px; }
+#header:after {content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+#header h1, #header h2 { float: right; margin: 0 27px; padding: 0; }
+#header h1 a, #header h2 a { background-position: 0 0; background-repeat: none; display: block; height: 75px; text-indent: -9999px; width: 75px; }
+	#header .home { background-image: url(icon-home.gif); }
+	#header .twitter { background-image: url(icon-twitter.gif); }
+	#header .email { background-image: url(icon-contact.gif); }
+#content{}
+#content h2 { background: #eee; margin: 20px 0 5px; font-size: 57px; color: #1c3260; }
+	.entry { background: #eee; border-top: 20px solid #ccc; margin: 0 0 20px 0; padding: 0 20px 20px; }
+		.entry h2 a { background:  #eee; }
+		.entry h2 a:hover, .entry h2 a:focus { background: #1c3260; }
+		.entry ul { margin: 0 0 20px 0; padding: 0; }
+			.entry ul li { color: #999; display: inline; list-style-type: none; padding: 0 5px 0 0; }
+	a { color: #1c3260; text-decoration: none; }
+		a:hover, a:focus { background: #1c3260; color: #fff;}
+	#pagination { border-top: 20px solid #ccc; height: 200px; background: #eee; text-align: center; font-size: 30px; position: relative; clear: both; display: block; margin: 0; padding: 20px; }
+		#pagination .prev { float: left;	}		
+		#pagination .next { float: right; }
