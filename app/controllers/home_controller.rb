@@ -5,8 +5,8 @@ class HomeController < ApplicationController
   end
 
   def tag
-    @posts = Post.published.tagged_with(params[:slug]).paginate(:page => params[:page], :per_page => 7)
-    @title = "Tagged #{@tag}"
+    @posts = Post.published.tagged_with(params[:slug]).paginate(:page => params[:page], :per_page => 30)
+    @title = "Tagged: #{params[:slug]}"
   end
 
   def image

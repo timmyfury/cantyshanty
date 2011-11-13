@@ -1,5 +1,15 @@
-<h1>Images tagged with: <%= @tag %></h1>
+<div class="entry">
+	<h2><%= @title %></h2>
 
-<% @posts.each do |post| %>
-	<a href="<%= short_url(:slug => post.slug) %>"><%= image_tag post.image.url(:thumb) %></a>
-<% end %>
+	<% @posts.each do |post| %>
+		<div style="width:400px;height:400px; float: left; padding: 10px; text-align:center">
+			<a href="<%= short_url(:slug => post.slug) %>"><%= image_tag post.image.url(:medium) %></a>
+		</div>
+
+		
+	<% end %>
+</div>
+
+<div id="pagination">
+	<%= will_paginate @posts %>
+</div>
