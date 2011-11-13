@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<%= image_tag @post.image.url(:small) %>
+
+<p>
+  <b>Title:</b>
+  <%= @post.title %>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <%= @post.tag_list %>
+</p>
+
+<% if @post.published_at %>
+	<p>
+	  <b>Published at:</b>
+	  <%= @post.published_at %>
+	</p>
+	<p>
+	  <b>Slug:</b>
+	  <%= @post.slug %>
+	</p>
+<% else %>
+
+	<% if @post.publishable %>
+		<%= form_for @post, :url => { :action => "publish" } do |f| %>
+		  <% if @post.errors.any? %>
+		    <div id="error_explanation">
+		      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+		      <ul>
+		      <% @post.errors.full_messages.each do |msg| %>
+		        <li><%= msg %></li>
+		      <% end %>
+		      </ul>
+		    </div>
+		  <% end %>
+		  <div class="actions">
+		    <%= f.submit "Publish" %>
+		  </div>
+		<% end %>
+	<% end %>
+
+<% end %>
+
+<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Back', posts_path %>
