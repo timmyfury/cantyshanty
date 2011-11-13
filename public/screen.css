@@ -15,9 +15,24 @@ body { margin: 0; padding: 0; }
 			.entry ul li { color: #999; display: inline; list-style-type: none; padding: 0 5px 0 0; }
 			.entry ul li a { color: #999; }
 				.entry ul li a:hover, .entry ul li a:focus { background: #1c3260; color: #fff; }
+	.navigation { background: #eee; border-top: 20px solid #ccc; font-size: 30px; margin: 0 0 20px 0; padding: 10px 20px; }
+		.navigation ul { margin: 20px 0; padding: 0; }
+		.navigation ul li { color: #999; display: inline; list-style-type: none; padding: 0 20px 0 0; }
+		.navigation ul li a:hover, .navigation ul li a:focus, .navigation ul li.active a { background: #1c3260; color: #fff; }
+
 	a { color: #1c3260; text-decoration: none; }
 		a:hover, a:focus { background: #1c3260; color: #fff; }
 	#pagination { border-top: 20px solid #ccc; height: 200px; background: #eee; text-align: center; font-size: 30px; position: relative; clear: both; display: block; margin: 0; padding: 20px; }
 		#pagination .prev { float: left; }
 		#pagination .next { float: right; }
 		#pagination .copyright { margin-top: 80px; }
+		
+		
+.entry:after {
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
