@@ -11,6 +11,4 @@
 * custom error pages
 * change email address
 * link to timmyfury
-* add icon in header for tag page
 * search functionality
-* better ios icons + 114x114 size
