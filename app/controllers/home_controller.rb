@@ -21,4 +21,9 @@ class HomeController < ApplicationController
     redirect_to short_url(:slug => @post.slug)
   end
 
+  def legacy_pages
+    page = params[:page_num] || 1
+    redirect_to root_path(:page => page)
+  end
+
 end
