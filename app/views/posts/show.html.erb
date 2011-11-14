@@ -1,5 +1,5 @@
 <div class="entry">
-	<% if @post.title %><h2><%= @post.title %></h2><% end %>
+	<% if @post.title %><h2><%= @post.title %><% if @post.published_at %> <%= short_url(:slug => @post.slug) %><% end %></h2><% end %>
 	<p id="notice"><%= notice %></p>
 	<%= image_tag @post.image.url(:large) %>
 	
@@ -34,6 +34,11 @@
 		<div class="field">
 			<label>Slug:</label>
 			<input disabled="disabled" type="text" value="<%= @post.slug %>">
+		</div>
+
+		<div class="field">
+			<label>Tweet content:</label>
+			<input readonly="readonly" type="text" value="<%= @post.title %> <%= short_url(:slug => @post.slug) %>">
 		</div>
 	<% end %>
 
