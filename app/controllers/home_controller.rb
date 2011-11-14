@@ -4,16 +4,19 @@ class HomeController < ApplicationController
 
   def index
     @posts = Post.published.recent.paginate(:page => params[:page], :per_page => 7)
+    @canonical = root_url
   end
 
   def tag
     @posts = Post.published.tagged_with(params[:slug]).paginate(:page => params[:page], :per_page => 30)
     @title = "Tagged: #{params[:slug]}"
+    @canonical = tag_url(:slug => params[:slug])
   end
 
   def image
     @post = Post.find_by_slug(params[:slug])
     @title = "#{@post.title}"
+    @canonical = short_url(:slug => @post.slug)
   end
 
   def legacy
