@@ -3,9 +3,10 @@ body { margin: 0; padding: 0; }
 #header:after {content: "."; display: block; height: 0; clear: both; visibility: hidden; }
 #header h1, #header h2 { float: right; margin: 0 27px; padding: 0; }
 #header h1 a, #header h2 a { background-position: 0 0; background-repeat: none; display: block; height: 75px; text-indent: -9999px; width: 75px; }
-	#header .home { background-image: url(icon-home.gif); }
-	#header .twitter { background-image: url(icon-twitter.gif); }
-	#header .email { background-image: url(icon-contact.gif); }
+	#header .home { background-image: url('icon-home.png'); }
+	#header .tags { background-image: url('icon-tags.png'); }
+	#header .twitter { background-image: url('icon-twitter.png'); }
+	#header .email { background-image: url('icon-contact.png'); }
 #content{}
 #content h2 { background: #eee; margin: 20px 0 5px; font-size: 57px; color: #1c3260; }
 	.entry { background: #eee; border-top: 20px solid #ccc; margin: 0 0 20px 0; padding: 0 20px 20px; }
