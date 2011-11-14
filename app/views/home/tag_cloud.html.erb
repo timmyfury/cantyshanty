@@ -1,0 +1,9 @@
+<div class="entry">
+    <h2>Tags</h2>
+
+    <ul class="tag-cloud">
+        <% tag_cloud(@tags, %w(tag-weight-1 tag-weight-2 tag-weight-3 tag-weight-4 tag-weight-5)) do |tag, css_class| %>
+            <li><%= link_to tag.name, { :action => :tag, :slug => tag.name }, :class => css_class %></li>
+        <% end %>
+    </ul>
+</div>

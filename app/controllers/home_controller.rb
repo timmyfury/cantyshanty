@@ -7,6 +7,10 @@ class HomeController < ApplicationController
     @canonical = root_url
   end
 
+  def tag_cloud
+    @tags = Post.published.tag_counts.sort{|x, y| x.name.downcase <=> y.name.downcase }
+  end
+
   def tag
     @posts = Post.published.tagged_with(params[:slug]).paginate(:page => params[:page], :per_page => 30)
     @title = "Tagged: #{params[:slug]}"
