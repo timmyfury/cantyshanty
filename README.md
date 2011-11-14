@@ -8,5 +8,4 @@
 * Tags index page
 * Mobile optimized site and admin
 * memcache
-* canonical urls on paged urls
 * descriptions
