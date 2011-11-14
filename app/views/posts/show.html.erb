@@ -35,7 +35,7 @@
 	<% if @post.published_at %>
 	    <div class="field">
 			<label>Tweet content:</label>
-			<textarea class="tweet-content" readonly="readonly"><%= @post.title %> <%= short_url(:slug => @post.slug) %></textarea>
+			<input type="text" value="<%= @post.title %> <%= short_url(:slug => @post.slug) %>" />
 		</div>
 	
 		<div class="field">
