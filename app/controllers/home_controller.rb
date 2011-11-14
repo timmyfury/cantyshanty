@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
 
+  layout "public"
+
   def index
     @posts = Post.published.recent.paginate(:page => params[:page], :per_page => 7)
   end
