@@ -10,5 +10,3 @@
 * memcache
 * canonical urls on paged urls
 * descriptions
-
-* address legacy page numbering

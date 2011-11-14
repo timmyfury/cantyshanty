@@ -3,6 +3,7 @@ Cantyshanty::Application.routes.draw do
   match 'tag/:slug' => 'home#tag', :as => :tag
   match '_:slug' => 'home#image', :as => :short
   match 'tc/:slug' => 'home#legacy', :as => :legacy
+  match 'page:page_num' => 'home#legacy_pages', :as => :legacy_pages
 
   match 'posts/:status' => 'posts#index', :constraints => { :status => /drafts|backlog|published/ }, :as => :list
 
