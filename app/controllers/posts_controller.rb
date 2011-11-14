@@ -33,6 +33,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @tags = Post.published.tag_counts.sort{|x, y| x.name.downcase <=> y.name.downcase }
     @status = @post.status
 
     respond_to do |format|

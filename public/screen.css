@@ -45,6 +45,7 @@ body { margin: 0; padding: 0; }
 }
 
 .tag-cloud li { line-height: 2.4em; }
+.tag-cloud .tag-used { background: #1c3260; color: #fff; }
 .tag-cloud .tag-weight-1 { font-size: 1.0em; }
 .tag-cloud .tag-weight-2 { font-size: 1.3em; }
 .tag-cloud .tag-weight-3 { font-size: 1.6em; }
