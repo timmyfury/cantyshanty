@@ -1,5 +1,0 @@
-<div class="entry">
-	<h2><a href="<%= short_url(:slug => post.slug) %>"><%= post.title %></a></h2>
-	<ul><% post.tags.each do |tag| %><li><%= tag %></li><% end %></ul>
-	<%= image_tag post.image.url(:large) %>
-</div>
