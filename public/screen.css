@@ -19,6 +19,7 @@ a:focus {
 
 #header:after,
 .entry:after,
+.entry ul:after,
 #footer:after,
 .pagination:after,
 .navigation:after {
@@ -169,6 +170,16 @@ a:focus {
 		padding: 0 15px 20px;
 		width: 290px;
 	}
+	.entry ul {
+		width: 290px;
+	}
+	.entry ul li {
+		color: #999;
+		display: block;
+		float: left;
+		list-style-type: none;
+		padding: 0 5px 0 0;
+	}
 }
 
 /*
@@ -176,11 +187,15 @@ a:focus {
 **********************************************************************/
 .image {
 	float: left;
-	height: 400px;
 	padding: 10px;
 	text-align: center;
+}
+
+.image-cloud .image {
+	height: 400px;
 	width: 400px;
 }
+
 
 @media screen and (max-device-width: 480px) {
 
@@ -194,6 +209,11 @@ a:focus {
 		width: 290px;
 	}
 
+	.image-cloud .image {
+		height: auto;
+		width: 290px;
+	}
+
 	.image img {
 		width: 290px;
 	}
@@ -202,13 +222,21 @@ a:focus {
 /*
 	tags
 **********************************************************************/
-.tag-cloud li { line-height: 2.4em; }
+.tag-cloud li { height: 36px; line-height: 2.4em; }
 .tag-cloud .tag-used { background: #1c3260; color: #fff; }
 .tag-cloud .tag-weight-1 { font-size: 1.0em; }
 .tag-cloud .tag-weight-2 { font-size: 1.3em; }
 .tag-cloud .tag-weight-3 { font-size: 1.6em; }
 .tag-cloud .tag-weight-4 { font-size: 1.9em; }
 .tag-cloud .tag-weight-5 { font-size: 2.2em; }
+
+@media screen and (max-device-width: 480px) {
+
+}
+
+@media screen and (max-device-width: 320px) {
+	.tag-cloud li { padding: 10px }
+}
 
 /*
 	Navigation
@@ -286,7 +314,7 @@ a:focus {
 	border-top: 20px solid #ccc;
 	display: block;
 	font-size: 30px;
-	height: 200px;
+/*	height: 200px;*/
 	margin: 0;
 	padding: 20px;
 	position: relative;
@@ -297,9 +325,6 @@ a:focus {
 }
 #footer .next {
 	float: right;
-}
-#footer .copyright {
-/*	margin-top: 80px;*/
 }
 
 @media screen and (max-device-width: 480px) {
