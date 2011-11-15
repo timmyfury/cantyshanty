@@ -1,13 +1,13 @@
 <div class="entry">
 	<h2><%= @status.capitalize %></h2>
 	<% @posts.each do |post| %>
-		<div style="width:400px;height:400px; float: left; padding: 10px; text-align:center">
+		<div class="image">
 			<%= link_to image_tag(post.image.url(:medium)), post %>
 		</div>
 	<% end %>
 </div>
 
 
-<div id="pagination">
+<div id="footer">
 	<%= will_paginate @posts %>
 </div>

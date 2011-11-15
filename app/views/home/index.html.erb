@@ -2,11 +2,11 @@
 	<div class="entry">
 		<h2><a href="<%= short_url(:slug => post.slug) %>"><%= post.title %></a></h2>
 		<ul><% post.tags.each do |tag| %><li><a href="<%= tag_url(:slug => tag.name) %>"><%= tag %></a></li><% end %></ul>
-		<%= image_tag post.image.url(:large) %>
+		<div class="image"><a href="<%= short_url(:slug => post.slug) %>"><%= image_tag post.image.url(:large) %></a></div>
 	</div>
 <% end %>
 
-<div id="pagination">
+<div id="footer">
 	<%= will_paginate @posts %>
-	<p>&copy; Images are copyright of their respective owners. I just don't know who they are.</p>
+	<p class="copyright">&copy; Images are copyright of their respective owners. I just don't know who they are.</p>
 </div>

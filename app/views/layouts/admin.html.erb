@@ -2,9 +2,9 @@
 
 <div class="navigation">
 	<ul>
-		<li class="<% if @status == 'drafts' %>active<% end %>"><a href="<%= list_url(:status => 'drafts') %>">Drafts (<%= @draft_count %>)</a></li>
-		<li class="<% if @status == 'backlog' %>active<% end %>"><a href="<%= list_url(:status => 'backlog') %>">Backlog (<%= @backlog_count %>)</a></li>
-		<li class="<% if @status == 'published' %>active<% end %>"><a href="<%= list_url(:status => 'published') %>">Published (<%= @published_count %>)</a></li>
+		<li class="<% if @status == 'drafts' %>active<% end %>"><a href="<%= list_url(:status => 'drafts') %>"><span>Drafts</span> <em>(<%= @draft_count %>)</em></a></li>
+		<li class="<% if @status == 'backlog' %>active<% end %>"><a href="<%= list_url(:status => 'backlog') %>"><span>Backlog</span> <em>(<%= @backlog_count %>)</em></a></li>
+		<li class="<% if @status == 'published' %>active<% end %>"><a href="<%= list_url(:status => 'published') %>"><span>Published</span> <em>(<%= @published_count %>)</em></a></li>
 		<li class="<% if @status == 'upload' %>active<% end %>"><a href="<%= new_post_url %>">Upload</a></li>
 	</ul>
 </div>
