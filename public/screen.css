@@ -324,7 +324,16 @@ a:focus {
 .actions { padding: 15px 0; }
 .actions input { font-size: 30px; }
 
+@media screen and (max-device-width: 480px) {
 
+}
+
+@media screen and (max-device-width: 320px) {
+	.field label,
+	.field input {
+		width: 280px;
+	}
+}
 
 
 
