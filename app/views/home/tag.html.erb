@@ -2,14 +2,13 @@
 	<h2><%= @title %></h2>
 
 	<% @posts.each do |post| %>
-		<div style="width:400px;height:400px; float: left; padding: 10px; text-align:center">
+		<div class="image">
 			<a href="<%= short_url(:slug => post.slug) %>"><%= image_tag post.image.url(:medium) %></a>
 		</div>
-
-		
 	<% end %>
 </div>
 
-<div id="pagination">
+<div id="footer">
 	<%= will_paginate @posts %>
+	<p class="copyright">&copy; Images are copyright of their respective owners. I just don't know who they are.</p>
 </div>
