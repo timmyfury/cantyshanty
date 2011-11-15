@@ -1,7 +1,8 @@
 <div class="entry">
 	<% if @post.title %><h2><%= @post.title %></h2><% end %>
 	<p id="notice"><%= notice %></p>
-	<%= image_tag @post.image.url(:large) %>
+
+	<div class="image"><%= image_tag @post.image.url(:large) %></div>
 	
 	<%= form_for(@post) do |f| %>
 	  <% if @post.errors.any? %>

@@ -1,6 +1,8 @@
 (function($){
 
 	$(function(){
+		$('.cloud-toggle').hide();
+		return;
 
 		var toggle = $('.cloud-toggle'),
 			cloud = $('.tag-cloud'),
