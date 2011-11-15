@@ -29,7 +29,7 @@ class Post < ActiveRecord::Base
   scope :recent, order("published_at DESC")
   
   def next
-    Post.published.where("published_at > ?", self.published_at).order("published_at").last
+    Post.published.where("published_at > ? AND id != ?", self.published_at, self.id).order("published_at DESC").last
   end
 
   def previous
