@@ -9,5 +9,7 @@
 
 
 <div id="footer">
-	<%= will_paginate @posts %>
+	<% if @status != 'random' %>
+		<%= will_paginate @posts %>
+	<% end %>
 </div>
