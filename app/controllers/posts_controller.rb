@@ -13,14 +13,16 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @status = params[:status] || 'drafts'
+    @status = params[:status] || 'random'
 
     if @status == 'published'
       @posts = Post.published.recently_updated.paginate(:page => params[:page], :per_page => 30)
     elsif @status == 'backlog'
       @posts = Post.backlog.recently_updated.paginate(:page => params[:page], :per_page => 30)
-    else # draft
+    elsif @status == 'drafts'
       @posts = Post.drafts.recently_updated.paginate(:page => params[:page], :per_page => 30)
+    else # random
+      @posts = Post.random
     end
 
     respond_to do |format|
