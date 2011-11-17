@@ -29,7 +29,7 @@ class Post < ActiveRecord::Base
   scope :recent, order("published_at DESC")
 
   def self.random
-    random_ids = Post.backlog.find(:all, :select => 'id').map(&:id).shuffle!.slice!(0, 20)
+    random_ids = Post.backlog.find(:all, :select => 'id').map(&:id).shuffle!.slice!(0, 30)
     Post.where(:id => random_ids)
   end
 
