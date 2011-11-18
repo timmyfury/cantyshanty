@@ -3,7 +3,7 @@
 
 	<% @posts.each do |post| %>
 		<div class="image">
-			<a href="<%= short_url(:slug => post.slug) %>"><%= image_tag post.image.url(:medium) %></a>
+			<a href="<%= short_url(:slug => post.slug) %>" title="<%= post.title %>"><%= image_tag post.image.url(:medium), :alt => post.title %></a>
 		</div>
 	<% end %>
 </div>

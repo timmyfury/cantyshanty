@@ -1,7 +1,7 @@
 <div class="entry">
 	<h2><%= @post.title %></h2>
 	<ul><% @post.tags.each do |tag| %><li><a href="<%= tag_url(:slug => tag.name) %>"><%= tag %></a></li><% end %></ul>
-	<div class="image"><%= image_tag @post.image.url(:large) %></div>
+	<div class="image"><%= image_tag @post.image.url(:large), :alt => @post.title %></div>
 </div>
 
 <div id="footer">
