@@ -9,5 +9,7 @@
 
 
 <div id="footer">
-	<%= will_paginate @posts %>
+	<% if @status != 'backlog' %>
+		<%= will_paginate @posts %>
+	<% end %>
 </div>
