@@ -27,7 +27,12 @@ class Post < ActiveRecord::Base
   scope :recently_updated, order("updated_at DESC")
 
   scope :recent, order("published_at DESC")
-  
+
+  def self.random
+    random_ids = Post.backlog.find(:all, :select => 'id').map(&:id).shuffle!.slice!(0, 30)
+    Post.where(:id => random_ids)
+  end
+
   def next
     Post.published.where("published_at > ? AND id != ?", self.published_at, self.id).order("published_at DESC").last
   end
