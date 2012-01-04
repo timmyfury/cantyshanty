@@ -2,16 +2,18 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
 
-gem "paperclip", "~> 2.4"
-gem "base58", "~> 0.1.0"
+gem 'acts-as-taggable-on', '~> 2.1.1'
 gem 'aws-s3'
-gem "acts-as-taggable-on", "~> 2.1.1"
-gem 'will_paginate'
-gem 'thin'
+gem 'base58', '~> 0.1.0'
 gem 'jquery-rails'
+gem 'paperclip', '~> 2.4'
+gem 'will_paginate'
+
+# gem 'foreman'
+gem 'thin'
 
 group :production do
-  gem "pg"
+  gem 'pg'
 end
 
 group :development do
@@ -25,6 +27,5 @@ group :assets do
 end
 
 group :test do
-  # Pretty printed test output
   gem 'turn', :require => false
 end
