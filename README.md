@@ -5,7 +5,6 @@
 * Twitter integration
 * find image source functionality using http://www.tineye.com/commercial_api
 * tag cloud on edit page for quick tagging
-* Mobile optimized site and admin
 * memcache
 * descriptions
 * custom error pages
@@ -14,4 +13,3 @@
 * html5 uploader
 * bookmarklet
 * use rails asset pipeline
-* migrate to heroku cedar stack
