@@ -1,0 +1,120 @@
+/*
+	Navigation
+**********************************************************************/
+.navigation {
+	background: #eee;
+	border-top: 20px solid #ccc;
+	font-size: 30px;
+	margin: 0 0 20px 0;
+	padding: 10px 20px;
+}
+
+.navigation ul {
+	margin: 20px 0;
+	padding: 0;
+}
+
+.navigation ul li {
+	color: #999;
+	display: block;
+	float: left;
+	list-style-type: none;
+	padding: 0 20px 0 0;
+}
+
+.navigation ul li a:hover,
+.navigation ul li a:focus,
+.navigation ul li.active,
+.navigation ul li.active a {
+	background: #1c3260;
+	color: #fff;
+}
+
+@media screen and (max-device-width: 480px), screen and (max-width: 480px) {
+	.navigation {
+		font-size: 20px;
+		padding: 0 0 15px;
+		width: 480px;
+	}
+
+	.navigation ul li {
+		margin: 0 5px;
+		padding: 14px;
+		text-align: center;
+	}
+	
+	.navigation ul li:first-child {
+		margin: 0 5px 0 15px;
+	}
+
+	.navigation ul li:last-child {
+		margin: 0 15px 0 5px;
+	}
+
+	
+	.navigation ul li span,
+	.navigation ul li em {
+		display: block;
+	}
+
+	.navigation ul li:last-child {
+		display: none;
+	}
+}
+
+@media screen and (max-device-width: 320px), screen and (max-width: 320px) {
+	.navigation {
+		font-size: 20px;
+		padding: 0 0 15px;
+		width: 320px;
+	}
+
+	.navigation ul li {
+		margin: 0 5px;
+		padding: 14px;
+		text-align: center;
+	}
+	
+	.navigation ul li:first-child {
+		margin: 0 5px 0 15px;
+	}
+
+	.navigation ul li:last-child {
+		margin: 0 15px 0 5px;
+	}
+
+	
+	.navigation ul li span,
+	.navigation ul li em {
+		display: block;
+	}
+
+	.navigation ul li:last-child {
+		display: none;
+	}
+}
+
+
+/*
+	Admin
+**********************************************************************/
+.field { font-size: 20px; padding: 15px 0; }
+.field label { display: block; }
+.field input { font-size: 20px; padding: 5px; }
+
+.actions { padding: 15px 0; }
+.actions input { font-size: 30px; }
+
+@media screen and (max-device-width: 480px), screen and (max-width: 480px) {
+	.field label,
+	.field input {
+		width: 440px;
+	}
+}
+
+@media screen and (max-device-width: 320px), screen and (max-width: 320px) {
+	.field label,
+	.field input {
+		width: 280px;
+	}
+}

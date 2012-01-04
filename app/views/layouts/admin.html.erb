@@ -1,5 +1,9 @@
-<% content_for :content do %>
+<% content_for :styles do %>
+    <%= stylesheet_link_tag("admin") %>
+<% end %>
+<% content_for :scripts do %><% end %>
 
+<% content_for :content do %>
 <div class="navigation">
 	<ul>
 		<li class="<% if @status == 'drafts' %>active<% end %>"><a href="<%= list_url(:status => 'drafts') %>"><span>Drafts</span> <em>(<%= @draft_count %>)</em></a></li>
@@ -12,10 +16,6 @@
 <div id="content">
 	<%= yield %>
 </div>
-
-<script src="/jquery-1.7.min.js" type="text/javascript"></script>
-<script src="/admin.js" type="text/javascript"></script>
-
 <% end %>
 
 <%= render :template => 'layouts/application' %>
