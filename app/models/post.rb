@@ -28,6 +28,16 @@ class Post < ActiveRecord::Base
 
   scope :recent, order("published_at DESC")
 
+  def image_sizes
+    {
+      :original => image(:original),
+      :large => image(:large),
+      :medium => image(:medium),
+      :small => image(:small),
+      :thumb  => image(:thumb),
+    }
+  end
+
   def self.random
     random_ids = Post.backlog.find(:all, :select => 'id').map(&:id).shuffle!.slice!(0, 30)
     Post.where(:id => random_ids)

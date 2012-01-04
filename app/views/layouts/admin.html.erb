@@ -1,7 +1,9 @@
 <% content_for :styles do %>
-    <%= stylesheet_link_tag("admin") %>
+    <%= stylesheet_link_tag "admin" %>
 <% end %>
-<% content_for :scripts do %><% end %>
+<% content_for :scripts do %>
+    <%= javascript_include_tag "application" %>
+<% end %>
 
 <% content_for :content do %>
 <div class="navigation">
