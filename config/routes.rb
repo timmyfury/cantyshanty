@@ -9,9 +9,7 @@ Cantyshanty::Application.routes.draw do
   match 'posts/:status' => 'posts#index', :constraints => { :status => /drafts|backlog|published/ }, :as => :list
 
   resources :posts do
-    member do
-      put 'publish'
-    end
+    put 'publish', :on => :member
   end
 
   # The priority is based upon order of creation:
