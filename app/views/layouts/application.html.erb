@@ -6,13 +6,16 @@
     <meta name="author" content="Home Improvement Troll" />
     <meta name="description" content="This could be my house" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <link rel="stylesheet" href="/screen.css" type="text/css" />
 
-	<link rel="shortcut icon" href="/favicon.ico" />
-	<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-	<link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
-	<link rel="apple-touch-icon" sizes="72x72" href="/apple-touch-icon-72x72.png" />
-	<link rel="apple-touch-icon" sizes="114x144" href="/apple-touch-icon-114x144.png" />
+	<%= stylesheet_link_tag("application") %>
+	<%= content_for?(:styles) ? yield(:styles) : '' %>
+	<%= content_for?(:scripts) ? yield(:scripts) : '' %>
+
+	<link rel="shortcut icon" href="<%= image_path 'favicon.ico' %>" />
+	<link rel="apple-touch-icon" href="<%= image_path 'apple-touch-icon.png' %>" />
+	<link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'apple-touch-icon-57x57.png' %>" />
+	<link rel="apple-touch-icon" sizes="72x72" href="<%= image_path 'apple-touch-icon-72x72.png' %>" />
+	<link rel="apple-touch-icon" sizes="114x144" href="<%= image_path 'apple-touch-icon-114x144.png' %>" />
 
 	<% if @canonical %><link rel="canonical" href="<%= @canonical %>" /><% end %>
 

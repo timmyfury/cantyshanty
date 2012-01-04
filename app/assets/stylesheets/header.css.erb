@@ -1,0 +1,71 @@
+/*
+	Header
+**********************************************************************/
+#header {
+	background: #1c3260;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+#header h1,
+#header h2 {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#header h1 a,
+#header h2 a {
+	background-position: left center;
+	background-repeat: no-repeat;
+	color: #FFF;
+	display: block;
+	font-size: 40px;
+	height: 75px;
+	margin: 0 0 0 20px;
+	padding: 30px 40px 0 95px;
+}
+#header h1 a:hover,
+#header h2 a:hover {
+	background-color: transparent;
+}
+
+#header .home { background-image: url('<%= image_path 'icon-home.png' %>'); }
+#header .tags { background-image: url('<%= image_path 'icon-tags.png' %>'); }
+#header .twitter { background-image: url('<%= image_path 'icon-twitter.png' %>'); }
+#header .email { background-image: url('<%= image_path 'icon-contact.png' %>'); }
+
+@media screen and (max-device-width: 480px), screen and (max-width: 480px) {
+	#header {
+		width: 480px;
+	}
+	#header h1 a,
+	#header h2 a {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: 75px 75px;
+		height: 75px;
+		margin: 0;
+		padding: 20px 15px;
+		text-indent: -9999px;
+		width: 75px;
+	}
+}
+
+@media screen and (max-device-width: 320px), screen and (max-width: 320px) {
+	#header {
+		width: 320px;
+	}
+	#header h1 a,
+	#header h2 a {
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: 50px 50px;
+		height: 50px;
+		margin: 0;
+		padding: 20px 15px;
+		text-indent: -9999px;
+		width: 50px;
+	}
+}
