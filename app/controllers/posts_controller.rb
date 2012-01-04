@@ -93,6 +93,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.publish
+        Twitter.update("#{@post.title} #{short_url(:slug => @post.slug)}")
         format.html { redirect_to @post, notice: 'Post was successfully published.' }
         format.json { head :ok }
       else
