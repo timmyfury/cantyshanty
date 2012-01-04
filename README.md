@@ -9,6 +9,9 @@
 * memcache
 * descriptions
 * custom error pages
-* change email address
 * link to timmyfury
 * search functionality
+* html5 uploader
+* bookmarklet
+* use rails asset pipeline
+* migrate to heroku cedar stack
