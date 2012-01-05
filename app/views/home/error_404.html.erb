@@ -1,6 +1,11 @@
-<% content_for :canonical do %><%= root_url %><% end %>
+<% content_for :title do %>404 Not Here!<% end %>
 
 <% content_for :content do %>
+    <div class="entry">
+		<h2>404 Not Here!</h2>
+		<div class="image">The page you were looking for isn't here. Try one of these random images instead.</div>
+	</div>
+
     <% @posts.each do |post| %>
     	<div class="entry">
     		<h2><a href="<%= short_url(:slug => post.slug) %>"><%= post.title %></a></h2>
@@ -10,7 +15,6 @@
     <% end %>
 
     <div id="footer">
-    	<%= will_paginate @posts %>
     	<p class="copyright">&copy; Images are copyright of their respective owners. I just don't know who they are.</p>
     </div>
 <% end %>

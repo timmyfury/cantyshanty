@@ -11,3 +11,6 @@
 * link to timmyfury
 * search functionality
 * bookmarklet
+
+* error.html
+* maintenance.html
