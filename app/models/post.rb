@@ -38,8 +38,13 @@ class Post < ActiveRecord::Base
     }
   end
 
-  def self.random
-    random_ids = Post.backlog.find(:all, :select => 'id').map(&:id).shuffle!.slice!(0, 30)
+  def self.random(how_many=30, only_published=false)
+    if only_published
+      random_ids = Post.published.find(:all, :select => 'id').map(&:id).shuffle!.slice!(0, how_many)
+    else
+      random_ids = Post.backlog.find(:all, :select => 'id').map(&:id).shuffle!.slice!(0, how_many)
+    end
+
     Post.where(:id => random_ids)
   end
 
