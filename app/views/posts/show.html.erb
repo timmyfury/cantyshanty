@@ -1,5 +1,13 @@
 <div class="entry">
-	<% if @post.title %><h2><%= @post.title %></h2><% end %>
+
+	<% if @post.title %>
+	    <% if @post.published_at %>
+	    <h2><a href="<%= short_url(:slug => @post.slug) %>"><%= @post.title %></a></h2>
+        <% else %>
+	    <h2><%= @post.title %></h2>
+	    <% end %>
+	<% end %>
+
 	<p id="notice"><%= notice %></p>
 
 	<div class="image"><%= image_tag @post.image.url(:large) %></div>
@@ -26,29 +34,35 @@
 	    <%= f.label :tag_list %>
 	    <%= f.text_field :tag_list, :autocapitalize => "off" %> <a class="cloud-toggle">Show tag cloud</a>
 	  </div>
-	  
+
+	  <div class="field">
+	    <%= f.label :source_title %>
+	    <%= f.text_field :source_title %>
+	  </div>
+
+	  <div class="field">
+	    <%= f.label :source_url %>
+	    <%= f.text_field :source_url %>
+	  </div>
+
 	  <ul class="tag-cloud" style="display: none;">
           <% tag_cloud(@tags, %w()) do |tag, css_class| %>
                 <li><a class="<%= css_class %>"><%= tag.name %></a></li>
           <% end %>
       </ul>
 
-	<% if @post.published_at %>
-	    <div class="field">
-			<label>Tweet content:</label>
-			<input type="text" value="<%= @post.title %> <%= short_url(:slug => @post.slug) %>" />
-		</div>
-	
-		<div class="field">
-			<label>Published at:</label>
-			<input disabled="disabled" type="text" value="<%= @post.published_at %>">
-		</div>
-		<div class="field">
-			<label>Slug:</label>
-			<input disabled="disabled" type="text" value="<%= @post.slug %>">
-		</div>
-	<% end %>
+<!--    <% if @post.published_at %>
+        <div class="field">
+            <label>Published at:</label>
+            <input disabled="disabled" type="text" value="<%= @post.published_at %>">
+        </div>
 
+        <div class="field">
+            <label>Slug:</label>
+            <input disabled="disabled" type="text" value="<%= @post.slug %>">
+        </div>
+    <% end %>
+ -->
 	  <div class="actions">
 	    <%= f.submit 'Save' %>
 	  </div>
