@@ -5,7 +5,7 @@
 	<h2><%= @post.title %></h2>
 	<ul><% @post.tags.each do |tag| %><li><a href="<%= tag_url(:slug => tag.name) %>"><%= tag %></a></li><% end %></ul>
 	<div class="image"><%= image_tag @post.image.url(:large), :alt => @post.title %></div>
-	<p class="source">
+	<p class="source">source:
     	<% if @post.source_title && @post.source_url %>
     	    <%= link_to @post.source_title, @post.source_url %>
     	<% elsif @post.source_title && !@post.source_url %>
