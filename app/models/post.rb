@@ -22,7 +22,9 @@ class Post < ActiveRecord::Base
 
   scope :backlog, where('published_at IS NULL AND publishable = ?', false)
 
-  scope :published, where("posts.published_at IS NOT NULL")
+  scope :published, where("published_at IS NOT NULL")
+  
+  scope :unattributed, where("published_at IS NOT NULL AND source_title IS NULL AND source_url IS NULL")
 
   scope :recently_updated, order("updated_at DESC")
 
