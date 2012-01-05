@@ -8,6 +8,7 @@ class PostsController < ApplicationController
     @published_count = Post.published.count
     @backlog_count = Post.backlog.count
     @draft_count = Post.drafts.count
+    @unattributed_count = Post.unattributed.count
   end
   
   # GET /posts
@@ -19,6 +20,8 @@ class PostsController < ApplicationController
       @posts = Post.published.recently_updated.paginate(:page => params[:page], :per_page => 30)
     elsif @status == 'backlog'
       @posts = Post.random
+    elsif @status == 'unattributed'
+      @posts = Post.unattributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
     else # drafts
       @posts = Post.drafts.recently_updated.paginate(:page => params[:page], :per_page => 30)
     end

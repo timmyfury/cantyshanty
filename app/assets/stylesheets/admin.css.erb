@@ -19,9 +19,11 @@
 	display: block;
 	float: left;
 	list-style-type: none;
-	padding: 0 20px 0 0;
+	margin: 0 20px 10px 0;
 }
-
+.navigation ul li a {
+	padding: 10px;
+}
 .navigation ul li a:hover,
 .navigation ul li a:focus,
 .navigation ul li.active,
@@ -57,7 +59,7 @@
 		display: block;
 	}
 
-	.navigation ul li:last-child {
+	.navigation ul li.not-mobile {
 		display: none;
 	}
 }
