@@ -7,6 +7,12 @@
 		});
 
 		$('.cloud-toggle').hide();
+
+		$('.show-more-options').click(function(evt){
+			evt.preventDefault();
+			$('.more-options').show();
+			$(this).blur();
+		});
 	});
 
 	// $(function(){
