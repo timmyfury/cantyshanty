@@ -1,19 +1,11 @@
 <% content_for :canonical do %><%= short_url(:slug => @post.slug) %><% end %>
 <% content_for :title do %><%= @post.title %><% end %>
 
-<div class="entry">
+<div class="entry single">
 	<h2><%= @post.title %></h2>
 	<ul><% @post.tags.each do |tag| %><li><a href="<%= tag_url(:slug => tag.name) %>"><%= tag %></a></li><% end %></ul>
 	<div class="image"><%= image_tag @post.image.url(:large), :alt => @post.title %></div>
-	<p class="source">source:
-    	<% if @post.source_title && @post.source_url %>
-    	    <%= link_to @post.source_title, @post.source_url %>
-    	<% elsif @post.source_title && !@post.source_url %>
-    	    <%= @post.source_title %>
-    	<% elsif !@post.source_title && @post.source_url %>
-    	    <%= link_to @post.source_url, @post.source_url %>
-    	<% end %>
-    </p>
+	<% if @post.source_title && @post.source_url %><p class="source">source: <%= link_to @post.source_title, @post.source_url %></p><% end %>
 </div>
 
 <div id="footer">

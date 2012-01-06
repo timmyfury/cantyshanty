@@ -10,6 +10,7 @@
 		<li class="<% if @status == 'backlog' %>active<% end %>"><a href="<%= list_url(:status => 'backlog') %>"><span>Backlog</span> <em>(<%= @backlog_count %>)</em></a></li>
 		<li class="<% if @status == 'published' %>active<% end %>"><a href="<%= list_url(:status => 'published') %>"><span>Published</span> <em>(<%= @published_count %>)</em></a></li>
 		<li class="<% if @status == 'unattributed' %>active<% end %> not-mobile"><a href="<%= list_url(:status => 'unattributed') %>"><span>Unattributed</span> <em>(<%= @unattributed_count %>)</em></a></li>
+		<li class="<% if @status == 'attributed' %>active<% end %> not-mobile"><a href="<%= list_url(:status => 'attributed') %>"><span>Attributed</span> <em>(<%= @attributed_count %>)</em></a></li>
 		<li class="<% if @status == 'upload' %>active<% end %> not-mobile"><a href="<%= new_post_url %>">Upload</a></li>
 	</ul>
 </div>
