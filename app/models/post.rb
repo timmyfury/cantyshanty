@@ -19,19 +19,15 @@ class Post < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/s3.yml"
 
-  scope :drafts, where("published_at IS NULL AND publishable = ?", true)
-
-  scope :backlog, where('published_at IS NULL AND publishable = ?', false)
-
-  scope :published, where("published_at IS NOT NULL")
-  
-  scope :unattributed, where("published_at IS NOT NULL AND source_title IS NULL AND source_url IS NULL")
-  
   scope :attributed, where("published_at IS NOT NULL AND source_title IS NOT NULL AND source_url IS NOT NULL")
-
-  scope :recently_updated, order("updated_at DESC")
-
+  scope :backlog, where('published_at IS NULL AND publishable = ?', false)
+  scope :drafts, where("published_at IS NULL AND publishable = ?", true)
+  scope :published, where("published_at IS NOT NULL")
+  scope :unattributed, where("published_at IS NOT NULL AND source_title IS NULL AND source_url IS NULL")
+  scope :unpublished, where("published_at IS NULL")
+  
   scope :recent, order("published_at DESC")
+  scope :recently_updated, order("updated_at DESC")
 
   def image_sizes
     {
@@ -41,11 +37,6 @@ class Post < ActiveRecord::Base
       :small => image(:small),
       :thumb  => image(:thumb),
     }
-  end
-
-  def self.search(search, page)
-    paginate :per_page => 30, :page => page,
-             :conditions => ['name like ?', "%#{search}%"], :order => 'name'
   end
 
   def self.random(how_many=30, only_published=false)

@@ -6,17 +6,15 @@
 <% content_for :content do %>
 <div class="navigation">
 	<ul>
-		<li class="<% if @status == 'drafts' %>active<% end %>"><a href="<%= list_url(:status => 'drafts') %>"><span>Drafts</span> <em>(<%= @draft_count %>)</em></a></li>
-		<li class="<% if @status == 'backlog' %>active<% end %>"><a href="<%= list_url(:status => 'backlog') %>"><span>Backlog</span> <em>(<%= @backlog_count %>)</em></a></li>
-		<li class="<% if @status == 'published' %>active<% end %>"><a href="<%= list_url(:status => 'published') %>"><span>Published</span> <em>(<%= @published_count %>)</em></a></li>
-		<li class="<% if @status == 'unattributed' %>active<% end %> not-mobile"><a href="<%= list_url(:status => 'unattributed') %>"><span>Unattributed</span> <em>(<%= @unattributed_count %>)</em></a></li>
-		<li class="<% if @status == 'attributed' %>active<% end %> not-mobile"><a href="<%= list_url(:status => 'attributed') %>"><span>Attributed</span> <em>(<%= @attributed_count %>)</em></a></li>
-		<li class="<% if @status == 'upload' %>active<% end %> not-mobile"><a href="<%= new_post_url %>">Upload</a></li>
-		<li class="not-mobile">
-		    <form action="<%= list_url(:status => 'search') %>" method="GET">
-    	       Search <input type="text" name="q" value="<%= params[:q] %>" />
-    	    </form>
-		</li>
+	    <li class="<% if @status == 'backlog' %>active<% end %>"><a href="<%= posts_path %>"><span>Backlog</span> <em>(<%= @backlog_count %>)</em></a></li>
+		<li class="<% if @status == 'drafts' %>active<% end %>"><a href="<%= drafts_posts_path %>"><span>Drafts</span> <em>(<%= @draft_count %>)</em></a></li>
+		<li class="show-more-options"><a href=""><span>More</span> <em>&darr;</em></a></li>
+		<li class="<% if @status == 'published' %>active<% end %> more-options"><a href="<%= published_posts_path %>"><span>Published</span> <em>(<%= @published_count %>)</em></a></li>
+		<li class="<% if @status == 'unattributed' %>active<% end %> more-options"><a href="<%= unattributed_posts_path %>"><span>Unattributed</span> <em>(<%= @unattributed_count %>)</em></a></li>
+		<li class="<% if @status == 'attributed' %>active<% end %> more-options"><a href="<%= attributed_posts_path %>"><span>Attributed</span> <em>(<%= @attributed_count %>)</em></a></li>
+		<li class="<% if @status == 'unpublished' %>active<% end %> not-mobile"><a href="<%= unpublished_posts_path %>"><span>Unpublished</span> <em>(<%= @unpublished_count %>)</em></a></li>
+		<li class="<% if @status == 'upload' %>active<% end %> not-mobile"><a href="<%= new_post_path %>">Upload</a></li>
+		<li class="search more-options"><form action="<%= search_posts_path %>" method="GET"><input type="text" placeholder="Search" name="q" value="<%= params[:q] %>" /></form></li>
 	</ul>
 </div>
 

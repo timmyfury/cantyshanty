@@ -5,35 +5,52 @@ class PostsController < ApplicationController
   before_filter :get_post_counts
   
   def get_post_counts
-    @published_count = Post.published.count
+    @status = params[:action] == 'index' ? 'backlog' : params[:action]
+    @attributed_count = Post.attributed.count
     @backlog_count = Post.backlog.count
     @draft_count = Post.drafts.count
+    @published_count = Post.published.count
     @unattributed_count = Post.unattributed.count
-    @attributed_count = Post.attributed.count
+    @unpublished_count = Post.unpublished.count
   end
-  
-  # GET /posts
-  # GET /posts.json
+
+  def attributed
+    @posts = Post.attributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
+    render :list
+  end
+
+  def drafts
+    @posts = Post.drafts.recently_updated.paginate(:page => params[:page], :per_page => 30)
+    render :list
+  end
+
+  def published
+    @posts = Post.published.recently_updated.paginate(:page => params[:page], :per_page => 30)
+    render :list
+  end
+
+  def search
+    @q = params[:q] || ''
+    @posts = Post.where('search LIKE ?', "%#{params[:q]}%").order("title").paginate(:page => params[:page], :per_page => 30)
+    render :list
+  end
+
+  def unattributed
+    @posts = Post.unattributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
+    render :list
+  end
+
+  def unpublished
+    @posts = Post.unattributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
+    render :list
+  end
+
   def index
-    @status = params[:status] || 'drafts'
+    @posts = @posts || Post.random
+    render :list
+  end
 
-    if @status == 'published'
-      @posts = Post.published.recently_updated.paginate(:page => params[:page], :per_page => 30)
-    elsif @status == 'backlog'
-      @posts = Post.random
-    elsif @status == 'unattributed'
-      @posts = Post.unattributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
-    elsif @status == 'attributed'
-      @posts = Post.attributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
-    elsif @status == 'search'
-      if params[:q]
-        @search_count = Post.where('search LIKE ?', "%#{params[:q]}%").count
-        @posts = Post.where('search LIKE ?', "%#{params[:q]}%").order("title").paginate(:page => params[:page], :per_page => 30)
-      end
-    else # drafts
-      @posts = Post.drafts.recently_updated.paginate(:page => params[:page], :per_page => 30)
-    end
-
+  def list
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @posts }

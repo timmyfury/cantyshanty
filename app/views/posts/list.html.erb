@@ -18,7 +18,7 @@
 
 <div id="footer">
 	<% if @status == 'backlog' %>
-	    <a href="<%= list_url(:status => 'backlog') %>">Load new backlog images</a>
+	    <a href="<%= posts_url %>">Load new backlog images</a>
 	<% else %>
 	    <% if @posts %>
 		    <%= will_paginate @posts %>
