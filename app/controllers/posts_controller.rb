@@ -25,6 +25,11 @@ class PostsController < ApplicationController
       @posts = Post.unattributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
     elsif @status == 'attributed'
       @posts = Post.attributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
+    elsif @status == 'search'
+      if params[:q]
+        @search_count = Post.where('title LIKE ?', "%#{params[:q]}%").count
+        @posts = Post.where('title LIKE ?', "%#{params[:q]}%").order("title").paginate(:page => params[:page], :per_page => 30)
+      end
     else # drafts
       @posts = Post.drafts.recently_updated.paginate(:page => params[:page], :per_page => 30)
     end

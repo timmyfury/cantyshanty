@@ -6,7 +6,7 @@ Cantyshanty::Application.routes.draw do
   match 'tc/:slug' => 'home#legacy', :as => :legacy
   match 'page:page_num' => 'home#legacy_pages', :as => :legacy_pages
 
-  match 'posts/:status' => 'posts#index', :constraints => { :status => /drafts|backlog|published|attributed|unattributed/ }, :as => :list
+  match 'posts/:status' => 'posts#index', :constraints => { :status => /drafts|backlog|published|attributed|unattributed|search/ }, :as => :list
 
   resources :posts do
     put 'publish', :on => :member
