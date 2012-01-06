@@ -45,24 +45,12 @@
 	    <%= f.text_field :source_url %>
 	  </div>
 
-	  <ul class="tag-cloud" style="display: none;">
-          <% tag_cloud(@tags, %w()) do |tag, css_class| %>
-                <li><a class="<%= css_class %>"><%= tag.name %></a></li>
-          <% end %>
-      </ul>
+      <div class="field">
+        <a target="_blank" href="http://google.com/searchbyimage?image_url=<%= @post.image.url(:large) %>">Find Source</a>
+      </div>
 
-<!--    <% if @post.published_at %>
-        <div class="field">
-            <label>Published at:</label>
-            <input disabled="disabled" type="text" value="<%= @post.published_at %>">
-        </div>
+      
 
-        <div class="field">
-            <label>Slug:</label>
-            <input disabled="disabled" type="text" value="<%= @post.slug %>">
-        </div>
-    <% end %>
- -->
 	  <div class="actions">
 	    <%= f.submit 'Save' %>
 	  </div>
