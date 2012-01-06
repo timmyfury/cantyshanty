@@ -25,6 +25,8 @@ class Post < ActiveRecord::Base
   scope :published, where("published_at IS NOT NULL")
   
   scope :unattributed, where("published_at IS NOT NULL AND source_title IS NULL AND source_url IS NULL")
+  
+  scope :attributed, where("published_at IS NOT NULL AND source_title IS NOT NULL AND source_url IS NOT NULL")
 
   scope :recently_updated, order("updated_at DESC")
 

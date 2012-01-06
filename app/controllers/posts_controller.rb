@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     @backlog_count = Post.backlog.count
     @draft_count = Post.drafts.count
     @unattributed_count = Post.unattributed.count
+    @attributed_count = Post.attributed.count
   end
   
   # GET /posts
@@ -22,6 +23,8 @@ class PostsController < ApplicationController
       @posts = Post.random
     elsif @status == 'unattributed'
       @posts = Post.unattributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
+    elsif @status == 'attributed'
+      @posts = Post.attributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
     else # drafts
       @posts = Post.drafts.recently_updated.paginate(:page => params[:page], :per_page => 30)
     end
