@@ -4,6 +4,7 @@ require 'base58'
 class Post < ActiveRecord::Base
 
   before_save :check_publishable
+  before_save :populate_search_text
 
   acts_as_taggable
 
@@ -83,11 +84,19 @@ class Post < ActiveRecord::Base
     end
   end
 
-  private
-    def check_publishable
-      if self.title && !self.title.empty?
-        self.publishable = true
-      end
+private
+  def check_publishable
+    if self.title && !self.title.empty?
+      self.publishable = true
+    end
+  end
+
+  def populate_search_text
+    self.search = "#{title}"
+    self.tags.each do |tag|
+      self.search << " #{tag.name}"
+    end
+    self.search << " #{source_title}"
   end
 
 end
