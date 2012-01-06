@@ -1,9 +1,17 @@
 <div class="entry image-cloud">
-	<h2><%= @status.capitalize %></h2>
-	<% @posts.each do |post| %>
-		<div class="image">
-			<%= link_to image_tag(post.image.url(:medium)), post %>
-		</div>
+	<h2>
+	    <%= @status.capitalize %>
+	    <% if @status == 'search' && params[:q] %>
+            <span><%= page_entries_info @posts %> of <%= @search_count %> for "<%= params[:q] %>"</span>
+    	<% end %>
+	</h2>
+
+	<% if @posts %>
+    	<% @posts.each do |post| %>
+    		<div class="image">
+    			<%= link_to image_tag(post.image.url(:medium)), post %>
+    		</div>
+    	<% end %>
 	<% end %>
 </div>
 
@@ -12,6 +20,8 @@
 	<% if @status == 'backlog' %>
 	    <a href="<%= list_url(:status => 'backlog') %>">Load new backlog images</a>
 	<% else %>
-		<%= will_paginate @posts %>
+	    <% if @posts %>
+		    <%= will_paginate @posts %>
+		<% end %>
 	<% end %>
 </div>

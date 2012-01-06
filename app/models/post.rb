@@ -42,6 +42,11 @@ class Post < ActiveRecord::Base
     }
   end
 
+  def self.search(search, page)
+    paginate :per_page => 30, :page => page,
+             :conditions => ['name like ?', "%#{search}%"], :order => 'name'
+  end
+
   def self.random(how_many=30, only_published=false)
     if only_published
       random_ids = Post.published.find(:all, :select => 'id').map(&:id).shuffle!.slice!(0, how_many)

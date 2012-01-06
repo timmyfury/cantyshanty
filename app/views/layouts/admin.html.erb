@@ -12,6 +12,11 @@
 		<li class="<% if @status == 'unattributed' %>active<% end %> not-mobile"><a href="<%= list_url(:status => 'unattributed') %>"><span>Unattributed</span> <em>(<%= @unattributed_count %>)</em></a></li>
 		<li class="<% if @status == 'attributed' %>active<% end %> not-mobile"><a href="<%= list_url(:status => 'attributed') %>"><span>Attributed</span> <em>(<%= @attributed_count %>)</em></a></li>
 		<li class="<% if @status == 'upload' %>active<% end %> not-mobile"><a href="<%= new_post_url %>">Upload</a></li>
+		<li class="not-mobile">
+		    <form action="<%= list_url(:status => 'search') %>" method="GET">
+    	       Search <input type="text" name="q" value="<%= params[:q] %>" />
+    	    </form>
+		</li>
 	</ul>
 </div>
 
