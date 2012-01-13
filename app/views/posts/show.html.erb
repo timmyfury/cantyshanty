@@ -45,11 +45,14 @@
 	    <%= f.text_field :source_url %>
 	  </div>
 
-      <div class="field">
-        <a target="_blank" href="http://google.com/searchbyimage?image_url=<%= @post.image.url(:large) %>">Find Source</a>
+      <div class="field not-mobile">
+          <%= f.label :image, 'Replace Image' %>
+          <%= f.file_field :image %>
       </div>
 
-      
+      <div class="field not-mobile">
+        <a target="_blank" href="http://google.com/searchbyimage?image_url=<%= @post.image.url(:large) %>">Find Source</a>
+      </div>
 
 	  <div class="actions">
 	    <%= f.submit 'Save' %>
@@ -77,6 +80,6 @@
 		<% end %>
 	<% end %>
 	
-	<!-- <%= link_to 'Destroy', @post, confirm: 'Are you sure?', method: :delete %> -->
+    <%= link_to 'Delete', @post, confirm: 'Are you sure?', method: :delete %>
 	
 </div>
