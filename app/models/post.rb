@@ -83,11 +83,14 @@ private
   end
 
   def populate_search_text
-    self.search = "#{title}"
+    self.search = slug ? "_#{slug}" : ""
+    self.search << " #{title}"
     self.tags.each do |tag|
       self.search << " #{tag.name}"
     end
     self.search << " #{source_title}"
+    self.search << " #{source_url}"
+    self.search.downcase!
   end
 
 end
