@@ -29,6 +29,10 @@ class Post < ActiveRecord::Base
   scope :recent, order("published_at DESC")
   scope :recently_updated, order("updated_at DESC")
 
+  def sourced
+    !source_title.blank? and !source_url.blank?
+  end
+
   def image_sizes
     {
       :original => image(:original),
