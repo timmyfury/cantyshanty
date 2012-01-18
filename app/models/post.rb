@@ -19,7 +19,7 @@ class Post < ActiveRecord::Base
                     :storage => :s3,
                     :s3_credentials => "#{Rails.root}/config/s3.yml"
 
-  scope :attributed, where("published_at IS NOT NULL AND source_title IS NOT NULL AND source_url IS NOT NULL")
+  scope :attributed, where('published_at IS NOT NULL AND source_title IS NOT NULL AND source_title !="" AND source_url IS NOT NULL AND source_url != ""')
   scope :backlog, where('published_at IS NULL AND publishable = ?', false)
   scope :drafts, where("published_at IS NULL AND publishable = ?", true)
   scope :published, where("published_at IS NOT NULL")

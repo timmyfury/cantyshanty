@@ -41,7 +41,7 @@ class PostsController < ApplicationController
   end
 
   def unpublished
-    @posts = Post.unattributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
+    @posts = Post.unpublished.recently_updated.paginate(:page => params[:page], :per_page => 30)
     render :list
   end
 
