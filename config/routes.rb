@@ -1,5 +1,6 @@
 Cantyshanty::Application.routes.draw do
 
+  match 'rss' => 'home#rss', :format => :xml, :as => :rss
   match 'tag/:slug' => 'home#tag', :as => :tag
   match 'tag' => 'home#tag_cloud', :as => :tag_cloud
   match '_:slug' => 'home#image', :as => :short
