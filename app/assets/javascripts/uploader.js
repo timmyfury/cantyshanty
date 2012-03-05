@@ -8,16 +8,60 @@
 			}, opts);
 
 			return this.each(function(){
-				return new Uploader(this, opts);
+				var uuuploader = new Uploader(this, opts);
+				window.uuuploader = uuuploader;
+				return uuuploader;
 			});
 		}
 	});
 
+	var UploaderItem = function(file){
+
+		this.status = "queued";
+		this.file = file;
+		this.name = file.name;
+		this.id = null;
+
+		var template = '<tr class="file-item">' +
+							'<td><img class="file-image" /></td>' +
+							'<td class="full"><span class="file-name">' + this.name + '</span></td>' +
+							'<td><span class="file-status">' + this.status + '</span></td>' +
+						'</tr>';
+
+		this.node = $(template);
+		this.imageNode = this.node.find('.file-image');
+		this.nameNode = this.node.find('.file-name');
+		this.statusNode = this.node.find('.file-status');
+
+	}; UploaderItem.prototype = {
+
+		updateStatus: function(status){
+			this.status = status;
+			this.statusNode.html(status);
+		},
+
+		setImage: function(image){
+			this.image = image;
+			this.imageNode.attr("src", image);
+		},
+
+		setID: function(id){
+			this.id = id;
+			var template = $('<a href="/posts/' + this.id + '">' + this.name + '</a>');
+			this.nameNode.html(template);
+		},
+
+		toString: function(){
+			return "UploaderItem: " + this.name;
+		}
+
+	};
+
 	var Uploader = function(el, opts){
 		this.rootNode = $(el);
 		this.opts = opts;
-		this.uploadQueue = [];
-		this.completeQueue = [];
+		this.queueing = false;
+		this.queue = [];
 
 		this.setupDom();
 		this.attachEvents();
@@ -26,19 +70,26 @@
 
 		setupDom: function(){
 			var template = '<div class="uploader">' +
-								'<div class="uploader-instructions">' +
-									'Drag and drop images here to upload them or ' +
-									'<a href="#" class="uploader-select">select files to upload</a>.' +
+								'<div class="target">' +
+									'<div class="instructions">' +
+										'Drag and drop images here to upload them or ' +
+										'<a href="#" class="select">select files to upload</a>.' +
+									'</div>' +
+									'<div class="status"></div>' +
+									'<input class="file" type="file" multiple="true" accept="image/*" />' +
 								'</div>' +
-								'<div class="uploader-status"></div>' +
-								'<input class="uploader-file" type="file" multiple="true" accept="image/*" />' +
+								'<table class="file-list"></table>' +
 							'</div>';
-			
-			this.targetNode = $(template).appendTo(this.rootNode);
-			this.instructionsNode = this.targetNode.find('.uploader-instructions');
-			this.selectNode = this.targetNode.find('.uploader-select');
-			this.statusNode = this.targetNode.find('.uploader-status');
-			this.fileNode = this.targetNode.find('.uploader-file');
+
+			this.node = $(template);
+			this.node.appendTo(this.rootNode);
+
+			this.targetNode = this.node.find('.target');
+			this.instructionsNode = this.node.find('.instructions');
+			this.selectNode = this.node.find('.select');
+			this.statusNode = this.node.find('.status');
+			this.fileNode = this.node.find('.file');
+			this.filelistNode = this.node.find('.file-list');
 
 			this.updateStatus();
 		},
@@ -74,47 +125,57 @@
 		},
 
 		onDragleave: function(evt){
-			this.targetNode.removeClass('uploader-over');
+			this.node.removeClass('uploader-over');
 		},
 
 		onDragover: function(evt){
 			evt.stopPropagation(); 
 			evt.preventDefault();
-			this.targetNode.addClass('uploader-over');
+			this.node.addClass('uploader-over');
 		},
 
 		onDrop: function(evt){
 			evt.preventDefault();
 
-			this.targetNode.removeClass('uploader-over');
+			this.node.removeClass('uploader-over');
+
+			this.queueing = true;
 
 			_.each(evt.dataTransfer.files, function(file){
 				this.process(file);
 			}, this);
+
+			this.queueing = false;
+			this.upload();
 		},
 
 		process: function(file){
-			this.uploadQueue.push(file);
+			var item = new UploaderItem(file);
+
+			this.filelistNode.append(item.node);
+
+			this.queue.push(item);
 			this.upload();
 		},
 
 		updateStatus: function(){
-			var template = this.completeQueue.length + ' images uploaded <span>&bull;</span> ' + 
-							this.uploadQueue.length + ' images remaining <span>&bull;</span> ' +
+			var template = this.getCompletedItems().length + ' images uploaded <span>&bull;</span> ' + 
+							this.getQueuedItems().length + ' images remaining <span>&bull;</span> ' +
 							(this.uploading ? '1' : '0') + ' images uploading';
 			this.statusNode.html(template);
 		},
 
 		upload: function(){
-			if(!this.uploading && this.uploadQueue.length > 0){
+			if(!this.queueing && !this.uploading && this.getQueuedItems().length > 0){
 				this.uploading = true;
 
 				this.updateStatus();
 
-				var file = _.first(this.uploadQueue),
+				var item = this.getNextItem(),
 					data = new FormData();
 
-				data.append(this.opts.name, file);
+				item.updateStatus('uploading');
+				data.append(this.opts.name, item.file);
 
 				$.ajax({
 				    url: this.opts.url,
@@ -129,12 +190,30 @@
 		},
 
 		success: function(data){
-			console.log(this, data);
-			this.completeQueue.push(data);
-			this.uploadQueue = _.rest(this.uploadQueue);
-			this.uploading = false;
+			var item = this.getItemByName(data.image_file_name);
+			item.updateStatus("complete");
+			item.setImage(data.image_sizes.small);
+			item.setID(data.id);
+
 			this.updateStatus();
+			this.uploading = false;
 			this.upload();
+		},
+
+		getQueuedItems: function(){
+			return _.filter(this.queue, function(item){ return item.status == 'queued'; }, this);
+		},
+
+		getCompletedItems: function(){
+			return _.filter(this.queue, function(item){ return item.status == 'complete'; }, this);
+		},
+
+		getNextItem: function(){
+			return _.find(this.queue, function(item){ return item.status == 'queued'; }, this);
+		},
+
+		getItemByName: function(name){
+			return _.find(this.queue, function(item){ return item.name == name; }, this);
 		}
 
 	};
