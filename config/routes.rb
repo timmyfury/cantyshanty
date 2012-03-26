@@ -10,6 +10,7 @@ Cantyshanty::Application.routes.draw do
   resources :posts do
     put 'publish', :on => :member
     get 'attributed', :on => :collection
+    get 'colors', :on => :collection
     get 'drafts', :on => :collection
     get 'published', :on => :collection
     get 'search', :on => :collection

@@ -10,7 +10,12 @@
 
 	<p id="notice"><%= notice %></p>
 
-	<div class="image"><%= image_tag @post.image.url(:large) %></div>
+	<div class="image">
+	    <%= image_tag @post.image.url(:large) %>
+        <div class="colors" style="background: <%= @post.hex %>;">
+            <span><%= @post.rgb %></span>
+        </div>
+	</div>
 	
 	<%= form_for(@post) do |f| %>
 	  <% if @post.errors.any? %>

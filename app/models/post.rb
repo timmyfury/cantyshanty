@@ -5,6 +5,7 @@ class Post < ActiveRecord::Base
 
   before_save :check_publishable
   before_save :populate_search_text
+  before_save :set_colors
 
   acts_as_taggable
 
@@ -25,7 +26,9 @@ class Post < ActiveRecord::Base
   scope :published, where("published_at IS NOT NULL")
   scope :unattributed, where("published_at IS NOT NULL AND source_title IS NULL AND source_url IS NULL")
   scope :unpublished, where("published_at IS NULL")
-  
+
+  scope :by_color, order("hue")
+
   scope :recent, order("published_at DESC")
   scope :recently_updated, order("updated_at DESC")
 
@@ -41,6 +44,14 @@ class Post < ActiveRecord::Base
       :small => image(:small),
       :thumb  => image(:thumb),
     }
+  end
+
+  def rgb
+    "rgb(#{self.red}, #{self.green}, #{self.blue})"
+  end
+
+  def hsl
+    "hsl(#{self.hue}, #{self.saturation}, #{self.luminosity})"
   end
 
   def self.random(how_many=30, only_published=false)
@@ -95,6 +106,25 @@ private
     self.search << " #{source_title}"
     self.search << " #{source_url}"
     self.search.downcase!
+  end
+
+  def set_colors
+    command = "convert #{image.to_file.path} -scale 1x1\! -format '%[pixel:u]' info:-"
+    color = %x[#{command}]
+
+    if color && $?.exitstatus != 0
+      raise StandardError, "There was an error determining the color!"
+    end
+    
+    self.red, self.green, self.blue = color[/rgb[a]?\((.*)\)/, 1].split(",").collect(&:to_i)
+
+    rgb = Color::RGB.new(self.red, self.green, self.blue)
+    hsl = rgb.to_hsl
+
+    self.hue = hsl.h
+    self.saturation = hsl.s
+    self.luminosity = hsl.l
+    self.hex = rgb.html.to_s
   end
 
 end

@@ -14,6 +14,11 @@ class PostsController < ApplicationController
     @unpublished_count = Post.unpublished.count
   end
 
+  def colors
+    @posts = Post.published.by_color.paginate(:page => params[:page], :per_page => 100)
+    render :list
+  end
+
   def attributed
     @posts = Post.attributed.recently_updated.paginate(:page => params[:page], :per_page => 30)
     render :list
