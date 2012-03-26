@@ -30,8 +30,19 @@ class PostsController < ApplicationController
   end
 
   def search
-    @q = params[:q] || ''
-    @posts = Post.where('search LIKE ?', "%#{params[:q]}%").order("title").paginate(:page => params[:page], :per_page => 30)
+    @q = params[:q].downcase || ''
+
+    patterns = []
+    terms = []
+
+    @q.split.each do |t|
+      patterns.push 'search LIKE ?'
+      terms.push "%#{t}%"
+    end
+
+    args = terms.unshift(patterns.join(" AND "))
+
+    @posts = Post.where(*args).order("title").paginate(:page => params[:page], :per_page => 30)
     render :list
   end
 
