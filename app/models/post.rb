@@ -23,12 +23,13 @@ class Post < ActiveRecord::Base
                       :secret_access_key => ENV['CANTYSHANTY_AWS_SECRET_KEY']
                     }
 
-  scope :attributed, where("published_at IS NOT NULL AND source_title IS NOT NULL AND source_title != ? AND source_url IS NOT NULL AND source_url != ?", "", "")
   scope :backlog, where('published_at IS NULL AND publishable = ?', false)
   scope :drafts, where("published_at IS NULL AND publishable = ?", true)
   scope :published, where("published_at IS NOT NULL")
-  scope :unattributed, where("published_at IS NOT NULL AND source_title IS NULL AND source_url IS NULL")
   scope :unpublished, where("published_at IS NULL")
+
+  scope :attributed, where("published_at IS NOT NULL AND source_title IS NOT NULL AND source_title != ? AND source_url IS NOT NULL AND source_url != ?", "", "")
+  scope :unattributed, where("published_at IS NOT NULL AND (source_title IS NULL OR source_title =?) AND (source_url IS NULL OR source_url=?)", "", "")
   
   scope :recent, order("published_at DESC")
   scope :recently_updated, order("updated_at DESC")
