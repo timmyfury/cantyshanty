@@ -1,16 +1,10 @@
+<% content_for :content do %>
+	<h2><%= @status.capitalize -%> <% if @status == 'search' && params[:q] -%><span><%= page_entries_info @posts %> of <%= @search_count %> for "<%= params[:q] %>"</span><% end -%></h2>
 
-	<% content_for :content do %>
-		<h2>
-		    <%= @status.capitalize %>
-		    <% if @status == 'search' && params[:q] %>
-	            <span><%= page_entries_info @posts %> of <%= @search_count %> for "<%= params[:q] %>"</span>
-	    	<% end %>
-		</h2>
-
-		<% if @posts %>
-	    	<% @posts.each do |post| %>
-	    		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :medium } %>
-	    	<% end %>
-		<% end %>
-		
+	<% if @posts %>
+    	<% @posts.each do |post| %>
+    		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :medium, :links => 'admin' } %>
+    	<% end %>
 	<% end %>
+	
+<% end %>

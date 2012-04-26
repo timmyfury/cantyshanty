@@ -4,14 +4,16 @@
 header {
 	background: #900;
 	display: block;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
+	width: 1200px;
 }
 
 header h1,
 header nav,
 header ul,
 header li {
+	display: inline;
 	float: left;
 	margin: 0;
 	padding: 0;
@@ -32,8 +34,8 @@ header li a:focus {
 	font-weight: 200;
 	line-height: 50px;
 	height: 75px;
-	margin: 0 0 0 20px;
-	padding: 25px 40px 0 70px;
+	margin: 0 30px;
+	padding: 20px 0 0 70px;
 }
 
 header .home { background-image: url('<%= image_path 'icon-home-50x50.png' %>'); }

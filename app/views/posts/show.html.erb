@@ -3,7 +3,7 @@
 	<p id="notice"><%= notice %></p>
 	
 
-	<%= render :partial => "layouts/post", :locals => { :post => @post, :format => :large } %>
+	<%= render :partial => "layouts/post", :locals => { :post => @post, :format => :large, :links => 'none' } %>
 
 
 	<%= form_for(@post) do |f| %>

@@ -3,5 +3,5 @@
 <% content_for :title do %><%= @post.title %><% end %>
 
 <% content_for :content do %>
-	<%= render :partial => "layouts/post", :locals => { :post => @post, :format => :large } %>
+	<%= render :partial => "layouts/post", :locals => { :post => @post, :format => :large, :links => 'none' } %>
 <% end %>

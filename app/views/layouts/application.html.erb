@@ -36,17 +36,20 @@
 			</nav>
 		</header>
 
-		<% if content_for?(:navigation) %>
-		<nav class="secondary">
-			<%= yield(:navigation) %>
-		</nav>
-		<% end %>
+		<div class="content">
 
-		<% if content_for?(:content) %>
-		<section>
-			<%= yield(:content) %>
-		</section>
-		<% end %>
+			<% if content_for?(:navigation) %>
+			<nav class="secondary">
+				<%= yield(:navigation) %>
+			</nav>
+			<% end %>
+
+			<% if content_for?(:content) %>
+			<section>
+				<%= yield(:content) %>
+			</section>
+			<% end %>
+		</div>
 
 		<footer>
 			<% if content_for?(:footer) %><%= yield(:footer) %><% end %>

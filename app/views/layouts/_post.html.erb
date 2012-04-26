@@ -1,22 +1,30 @@
-<article class="<%= format %>">
+<article class="<%= format %> <%= links %>">
 	<% if post.title %>
-		<% if post.slug %>
+		<% if links == 'public' and post.slug %>
 			<h2><a href="<%= short_url(:slug => post.slug) %>"><%= post.title %></a></h2>
+		<% elsif links == 'admin' %>
+			<h2><a href="<%= post_url(post) %>"><%= post.title %></a></h2>
 	    <% else %>
 			<h2><%= post.title %></h2>
 		<% end %>
 	<% end %>
 
-	<% if post.tags %>
+	<% if post.tags.size > 0 %>
 		<ul><% post.tags.each do |tag| %><li><a href="<%= tag_url(:slug => tag.name) %>"><%= tag %></a></li><% end %></ul>
 	<% end %>
 
-	<% if post.slug %>
-		<a href="<%= short_url(:slug => post.slug) %>" title="<%= post.title %>"><%= image_tag post.image.url(format), :alt => post.title %></a>
-	<% else %>
-		<a href="<%= post_url(post) %>" title="<%= post.title %>"><%= image_tag post.image.url(format), :alt => post.title %></a>
-	<% end %>
+	<div class="image" style="background-image: url(<%= post.image.url(format) %>);">
+		<% if links == 'public' and post.slug %>
+			<a href="<%= short_url(:slug => post.slug) %>" title="<%= post.title %>"><%= image_tag post.image.url(format), :alt => post.title %></a>
+		<% elsif links == 'admin' %>
+			<a href="<%= post_url(post) %>" title="<%= post.title %>"><%= image_tag post.image.url(format), :alt => post.title %></a>
+		<% else %>
+			<%= image_tag post.image.url(format), :alt => post.title %>
+		<% end %>
+	</div>
 
 	<% if post.sourced %><p class="source">source: <%= link_to post.source_title, post.source_url %></p><% end %>
+	
+	<% if post.slug %><p class="permanent"><a href="<%= short_url(:slug => post.slug) %>">Permalink</a></p><% end %>
 </article>
 

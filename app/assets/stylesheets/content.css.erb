@@ -2,6 +2,90 @@
 	Content
 **********************************************************************/
 
+.content {
+	background: #FFF;
+}
+
+.content section {
+	margin: 0 auto;
+	padding: 10px 0;
+	width: 1120px;
+}
+
+
+
+article.medium {
+	background: #000;
+	float: left;
+	height: 400px;
+	margin: 10px 20px;
+	padding: 20px 60px;
+	text-align: center;
+	width: 400px;
+}
+article.medium .image {
+	background-position: center center;
+	background-repeat: no-repeat;
+	height: 400px;
+	width: 400px;
+}
+article .image a {
+	text-indent: 100%;
+	overflow: hidden;
+}
+
+article.large {
+	background: #000;
+	float: left;
+/*	height: 400px;*/
+	margin: 10px 0;
+	padding: 40px 0;
+	text-align: center;
+	width: 1120px;
+}
+
+article.large .image {
+	background-position: center center;
+	background-repeat: no-repeat;
+/*	height: 600px;*/
+/*	width: 400px;*/
+}
+
+
+
+
+article.medium h2,
+article.medium ul,
+article.medium .source,
+article.none .permanent,
+article.public .permanent {
+	display: none;
+}
+
+
+.image a,
+.image a:hover,
+.image a:focus {
+	background: transparent;
+	border: 0;
+	display: block;
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+}
+
+/*
+	Clearfix
+**********************************************************************/
+section:after,
+article:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
 /*
 	Media Queries
 **********************************************************************/
@@ -27,17 +111,7 @@
 	}
 }
 
-/*
-	Clearfix
-**********************************************************************/
-section:after,
-article:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
-}
+
 
 /*
 	Entry
@@ -117,13 +191,13 @@ article:after {
 /*
 	images
 **********************************************************************/
-.image {
+/*.image {
 	float: left;
 	padding: 10px;
 	text-align: center;
-}
+}*/
 
-.single .image {
+/*.single .image {
 	float: none;
 	padding: 0;
 	text-align: left;
@@ -133,7 +207,7 @@ article:after {
 	height: 400px;
 	width: 400px;
 }
-
+*/
 
 @media screen and (max-width: 480px) {
 	.image {
