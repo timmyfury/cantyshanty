@@ -6,6 +6,8 @@ class HomeController < ApplicationController
     @posts = Post.published.recent.paginate(:page => params[:page], :per_page => 7)
   end
 
+  def about; end;
+
   def rss
     @posts = Post.published.recent.paginate(:page => params[:page], :per_page => 20)
   end

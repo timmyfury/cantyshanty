@@ -1,9 +1,11 @@
 Cantyshanty::Application.routes.draw do
 
+  match 'about' => 'home#about', :as => :about
   match 'rss' => 'home#rss', :format => :xml, :as => :rss
   match 'tag/:slug' => 'home#tag', :as => :tag
   match 'tag' => 'home#tag_cloud', :as => :tag_cloud
   match '_:slug' => 'home#image', :as => :short
+
   match 'tc/:slug' => 'home#legacy', :as => :legacy
   match 'page:page_num' => 'home#legacy_pages', :as => :legacy_pages
 
