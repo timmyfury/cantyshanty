@@ -17,7 +17,11 @@ class Post < ActiveRecord::Base
                     },
                     :path => ":id/:style.:extension",
                     :storage => :s3,
-                    :s3_credentials => "#{Rails.root}/config/s3.yml"
+                    :bucket => 'cantyshanty-production',
+                    :s3_credentials => {
+                      :access_key_id => ENV['CANTYSHANTY_AWS_ACCESS_KEY'],
+                      :secret_access_key => ENV['CANTYSHANTY_AWS_SECRET_KEY']
+                    }
 
   scope :attributed, where("published_at IS NOT NULL AND source_title IS NOT NULL AND source_title != ? AND source_url IS NOT NULL AND source_url != ?", "", "")
   scope :backlog, where('published_at IS NULL AND publishable = ?', false)
