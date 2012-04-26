@@ -57,7 +57,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = @posts || Post.random
+    @posts = Post.random(30, false).paginate(:page => params[:page], :per_page => 20)
     render :list
   end
 

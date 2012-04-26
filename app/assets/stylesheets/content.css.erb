@@ -1,15 +1,10 @@
-
-
 /*
 	Content
 **********************************************************************/
-#content h2 {
-	background: #eee;
-	margin: 20px 0 5px;
-	font-size: 57px;
-	color: #1c3260;
-}
 
+/*
+	Media Queries
+**********************************************************************/
 @media screen and (max-width: 480px) {
 	#content {
 		width: 480px;
@@ -30,6 +25,18 @@
 		font-size: 40px;
 		margin: 15px 0;
 	}
+}
+
+/*
+	Clearfix
+**********************************************************************/
+section:after,
+article:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
 }
 
 /*

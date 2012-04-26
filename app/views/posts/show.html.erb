@@ -1,17 +1,11 @@
-<div class="entry">
-
-	<% if @post.title %>
-	    <% if @post.published_at %>
-	    <h2><a href="<%= short_url(:slug => @post.slug) %>"><%= @post.title %></a></h2>
-        <% else %>
-	    <h2><%= @post.title %></h2>
-	    <% end %>
-	<% end %>
+<% content_for :content do %>
 
 	<p id="notice"><%= notice %></p>
-
-	<div class="image"><%= image_tag @post.image.url(:large) %></div>
 	
+
+	<%= render :partial => "layouts/post", :locals => { :post => @post, :format => :large } %>
+
+
 	<%= form_for(@post) do |f| %>
 	  <% if @post.errors.any? %>
 	    <div id="error_explanation">
@@ -82,4 +76,4 @@
 	
     <%= link_to 'Delete', @post, confirm: 'Are you sure?', method: :delete %>
 	
-</div>
+<% end %>

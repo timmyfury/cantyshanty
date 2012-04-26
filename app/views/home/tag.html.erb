@@ -1,17 +1,11 @@
 <% content_for :canonical do %><%= tag_url(:slug => params[:slug]) %><% end %>
+
 <% content_for :title do %>Tagged: <%= params[:slug] %><% end %>
 
-<div class="entry image-cloud">
+<% content_for :content do %>
 	<h2><%= @title %></h2>
 
 	<% @posts.each do |post| %>
-		<div class="image">
-			<a href="<%= short_url(:slug => post.slug) %>" title="<%= post.title %>"><%= image_tag post.image.url(:medium), :alt => post.title %></a>
-		</div>
+		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :medium } %>
 	<% end %>
-</div>
-
-<div id="footer">
-	<%= will_paginate @posts %>
-	<p class="copyright">&copy; Images are copyright of their respective owners. I just don't know who they are.</p>
-</div>
+<% end %>

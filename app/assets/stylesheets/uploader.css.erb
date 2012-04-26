@@ -1,0 +1,53 @@
+/*
+	uploader
+**********************************************************************/
+.uploader .target {
+	background: #EEE;
+	border: #000 dotted 1px;
+	height: 200px;
+/*	width: 500px;*/
+}
+.uploader-over .target {
+	background: #F7F4A0;
+}
+.uploader .instructions {
+	font-size: 25px;
+	line-height: 27px;
+	margin: 65px 20px 10px;
+	text-align: center;
+}
+.uploader .status {
+	color: #777;
+	font-size: 20px;
+	line-height: 22px;
+	margin: 10px 20px;
+	text-align: center;
+}
+.uploader .status span {
+	color: #BBB;
+}
+
+.file {
+	display: none;
+}
+
+.uploader .file-list img {
+	background: url("<%= asset_path 'loader.gif' %>") center center no-repeat;
+	border: 1px solid #1c3260;
+	display: block;
+	min-height: 100px;
+	width: 200px;
+}
+.uploader .file-list {
+	border-collapse: collapse;
+	margin: 10px 0 0;
+	width: 100%;
+}
+.uploader .file-list td {
+	border-top: 1px solid #1c3260;
+	margin: 0;
+	padding: 5px;
+}
+.uploader .file-list td.full {
+	width: 100%;
+}

@@ -1,17 +1,7 @@
 <% content_for :canonical do %><%= short_url(:slug => @post.slug) %><% end %>
+
 <% content_for :title do %><%= @post.title %><% end %>
 
-<div class="entry single">
-	<h2><%= @post.title %></h2>
-	<ul><% @post.tags.each do |tag| %><li><a href="<%= tag_url(:slug => tag.name) %>"><%= tag %></a></li><% end %></ul>
-	<div class="image"><%= image_tag @post.image.url(:large), :alt => @post.title %></div>
-	<% if @post.sourced %><p class="source">source: <%= link_to @post.source_title, @post.source_url %></p><% end %>
-</div>
-
-<div id="footer">
-    <div class="pagination">
-        <% if @post.previous %><a class="prev" href="<%= short_url(:slug => @post.previous.slug) %>">&#8592; <%= @post.previous.title %></a><% end %>
-    	<% if @post.next %><a class="next" href="<%= short_url(:slug => @post.next.slug) %>"><%= @post.next.title %> &#8594;</a><% end %>
-    </div>	
-	<p class="copyright">&copy; Images are copyright of their respective owners. I just don't know who they are.</p>
-</div>
+<% content_for :content do %>
+	<%= render :partial => "layouts/post", :locals => { :post => @post, :format => :large } %>
+<% end %>

@@ -1,9 +1,23 @@
 /*
-	General
+	Core
 **********************************************************************/
 body {
+	font-family: "Helvetica Neue", Helvetica, arial, sans-serif;
 	margin: 0;
 	padding: 0;
+	text-align: center;
+}
+
+h2 {
+	background: #eee;
+	margin: 20px 0 5px;
+	font-size: 57px;
+	color: #1c3260;
+}
+
+h2 span {
+	color: #999;
+	font-size: 30px;
 }
 
 a {
@@ -17,20 +31,44 @@ a:focus {
 	color: #fff;
 }
 
-#header:after,
-.entry:after,
-.entry ul:after,
-#footer:after,
-.pagination:after,
-.navigation:after,
-.navigation ul:after {
-	content: ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
+
+
+
+
+
+
+
+
+/*
+	Forms
+**********************************************************************/
+/*.field { font-size: 20px; padding: 15px 0; }
+.field label { display: block; }
+.field input { font-size: 20px; padding: 5px; }
+
+.actions { padding: 15px 0; }
+.actions input { font-size: 30px; }
+
+@media screen and (max-width: 480px) {
+	.field label,
+	.field input {
+		width: 440px;
+	}
 }
 
+@media screen and (max-width: 320px) {
+	.field label,
+	.field input {
+		width: 280px;
+	}
+}
+
+
+*/
+
+/*
+	Media Queries
+**********************************************************************/
 @media screen and (max-width: 480px){
 	body {
 		width: 480px;

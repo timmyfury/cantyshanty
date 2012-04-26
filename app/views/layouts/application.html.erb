@@ -1,36 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><% if content_for?(:title) %><%= yield(:title) %> | <% end %>Canty Shanty</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="author" content="Home Improvement Troll" />
-    <meta name="description" content="This could be my house" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<head>
+		<title><% if content_for?(:title) %><%= yield(:title) %> | <% end %>Canty Shanty</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="author" content="Home Improvement Troll" />
+		<meta name="description" content="This could be my house" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-	<%= stylesheet_link_tag("application") %>
-	<%= content_for?(:styles) ? yield(:styles) : '' %>
-	<%= content_for?(:scripts) ? yield(:scripts) : '' %>
+		<%= stylesheet_link_tag("application") %>
+		<%= content_for?(:styles) ? yield(:styles) : '' %>
+		<%= content_for?(:scripts) ? yield(:scripts) : '' %>
 
-	<link rel="shortcut icon" href="<%= image_path 'favicon.ico' %>" />
-	<link rel="apple-touch-icon" href="<%= image_path 'apple-touch-icon.png' %>" />
-	<link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'apple-touch-icon-57x57.png' %>" />
-	<link rel="apple-touch-icon" sizes="72x72" href="<%= image_path 'apple-touch-icon-72x72.png' %>" />
-	<link rel="apple-touch-icon" sizes="114x114" href="<%= image_path 'apple-touch-icon-114x114.png' %>" />
+		<link rel="shortcut icon" href="<%= image_path 'favicon.ico' %>" />
+		<link rel="apple-touch-icon" href="<%= image_path 'apple-touch-icon.png' %>" />
+		<link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'apple-touch-icon-57x57.png' %>" />
+		<link rel="apple-touch-icon" sizes="72x72" href="<%= image_path 'apple-touch-icon-72x72.png' %>" />
+		<link rel="apple-touch-icon" sizes="114x114" href="<%= image_path 'apple-touch-icon-114x114.png' %>" />
 
-	<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= rss_url %>">
+		<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= rss_url %>">
 
-	<% if content_for?(:canonical) %><link rel="canonical" href="<%= yield(:canonical) %>" /><% end %>
+		<% if content_for?(:canonical) %><link rel="canonical" href="<%= yield(:canonical) %>" /><% end %>
 
-	<%= csrf_meta_tags %>
-  </head>
-  <body>
-    <div id="header">
-      <h1><a href="<%= root_url %>" class="home">Canty Shanty</a></h1>
-      <h2><a href="<%= tag_cloud_url %>" class="tags">Tags</a></h2>
-      <h2><a href="http://twitter.com/cantyshanty" class="twitter">Twitter</a></h2>
-      <h2><a href="mailto:tim.crowe@timmyfury.com" class="email">Email</a></h2>
-    </div>
+		<%= csrf_meta_tags %>
+	</head>
+	<body>
+		<header>
+			<h1><a href="<%= root_url %>" class="home">Canty Shanty</a></h1>
 
-	<%= content_for?(:content) ? yield(:content) : yield %>
-  </body>
+			<nav class="primary">
+				<ul>
+					<li><a href="<%= about_url %>" class="about">About</a></li>
+					<li><a href="<%= tag_cloud_url %>" class="tags">Tags</a></li>
+					<li><a href="http://twitter.com/cantyshanty" class="twitter">Twitter</a></li>
+				</ul>
+			</nav>
+		</header>
+
+		<% if content_for?(:navigation) %>
+		<nav class="secondary">
+			<%= yield(:navigation) %>
+		</nav>
+		<% end %>
+
+		<% if content_for?(:content) %>
+		<section>
+			<%= yield(:content) %>
+		</section>
+		<% end %>
+
+		<footer>
+			<% if content_for?(:footer) %><%= yield(:footer) %><% end %>
+
+			<p class="copyright">&copy; Images are copyright of their respective owners. I just don't know who they are.</p>
+		</footer>
+	</body>
 </html>

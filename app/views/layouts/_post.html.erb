@@ -1,0 +1,22 @@
+<article class="<%= format %>">
+	<% if post.title %>
+		<% if post.slug %>
+			<h2><a href="<%= short_url(:slug => post.slug) %>"><%= post.title %></a></h2>
+	    <% else %>
+			<h2><%= post.title %></h2>
+		<% end %>
+	<% end %>
+
+	<% if post.tags %>
+		<ul><% post.tags.each do |tag| %><li><a href="<%= tag_url(:slug => tag.name) %>"><%= tag %></a></li><% end %></ul>
+	<% end %>
+
+	<% if post.slug %>
+		<a href="<%= short_url(:slug => post.slug) %>" title="<%= post.title %>"><%= image_tag post.image.url(format), :alt => post.title %></a>
+	<% else %>
+		<a href="<%= post_url(post) %>" title="<%= post.title %>"><%= image_tag post.image.url(format), :alt => post.title %></a>
+	<% end %>
+
+	<% if post.sourced %><p class="source">source: <%= link_to post.source_title, post.source_url %></p><% end %>
+</article>
+

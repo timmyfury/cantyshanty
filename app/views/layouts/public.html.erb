@@ -1,20 +1,31 @@
+<% content_for :styles do %><% end %>
 <% content_for :scripts do %><% end %>
+<% content_for :navigation do %><% end %>
 
 <% content_for :content do %>
-    <div id="content">
-    	<%= yield %>
-    </div>
+	<%= yield %>
+<% end %>
 
-    <script type="text/javascript">
-      var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-      document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-    </script>
-    <script type="text/javascript">
-      try {
-        var pageTracker = _gat._getTracker("UA-9639324-4");
-        pageTracker._trackPageview();
-      } catch(err) {}
-    </script>
+<% content_for :footer do %>
+	<% if @posts %>
+		<%= will_paginate @posts %>
+	<% end %>
+
+	<% if @post %>
+		<div class="pagination">
+			<% if @post.previous %><a class="prev" href="<%= short_url(:slug => @post.previous.slug) %>">&#8592; <%= @post.previous.title %></a><% end %>
+			<% if @post.next %><a class="next" href="<%= short_url(:slug => @post.next.slug) %>"><%= @post.next.title %> &#8594;</a><% end %>
+		</div>
+	<% end %>
+
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+		try {
+			var pageTracker = _gat._getTracker("UA-9639324-4");
+			pageTracker._trackPageview();
+		} catch(err) {}
+	</script>
 <% end %>
 
 <%= render :template => 'layouts/application' %>
