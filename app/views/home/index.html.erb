@@ -2,6 +2,6 @@
 
 <% content_for :content do %>
 	<% @posts.each do |post| %>
-		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :medium, :links => 'public' } %>
+		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :large, :links => 'public' } %>
 	<% end %>
 <% end %>

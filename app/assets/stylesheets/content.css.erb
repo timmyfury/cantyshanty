@@ -3,29 +3,30 @@
 **********************************************************************/
 .content {
 	background: #FFF;
-	text-align: left;
+	text-align: center;
 }
 .content h2 {
 	font-size: 36px;
 	font-weight: 200;
-	margin: 0;
-	padding: 20px;
+	margin: 0 0 20px;
+	padding: 0;
 }
 .content section {
 	color: #444;
 	margin: 0 auto;
 	padding: 10px 0;
-	width: 1120px;
 }
 .content section article {
 	background: #000;
 	color: #FFF;
-	float: left;
+	margin: 30px auto 40px;
+	padding: 20px 20px 0 20px;
 	text-align: center;
 }
-.content section article .image {
-	background-position: center center;
-	background-repeat: no-repeat;
+.content .image {
+	left: -40px;
+	margin: 0 0 20px;
+	position: relative;
 }
 .content .image a,
 .content .image a:hover,
@@ -34,51 +35,28 @@
 	border: 0;
 	display: block;
 	margin: 0;
-	overflow: hidden;
 	padding: 0;
 	text-decoration: none;
-	text-indent: 100%;
+}
+.content .source {
+	margin: 0 0 20px;
+	padding: 0;
+}
+.content .source {
+	opacity: 0.4;
 }
 article.none .permanent,
 article.public .permanent {
 	display: none;
 }
-
-
-/*
-	Medium Entries
-**********************************************************************/
-article.medium {
-	height: 400px;
-	margin: 10px 20px;
-	padding: 20px 60px;
-	width: 400px;
-}
-article.medium .image {
-	height: 400px;
-	width: 400px;
-}
-article.medium h2,
-article.medium .tags,
-article.medium .source {
-	display: none;
-}
-
-/*
-	Large Entries
-**********************************************************************/
-article.large {
-	margin: 10px 0;
-	padding: 0 0;
-	width: 1120px;
-}
-article.large .tags {
+article .tags {
 	list-style-type: none;
-	margin: 0;
-	padding: 20px;
+	margin: 0 0 20px;
+	padding: 0;
 }
-article.large .tags li {
+article .tags li {
 	display: inline;
+	line-height: 30px;
 	margin: 10px 0;
 	padding: 10px;
 }

@@ -6,6 +6,6 @@
 	<h2>Tagged: <%= params[:slug] %></h2>
 
 	<% @posts.each do |post| %>
-		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :medium, :links => 'public' } %>
+		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :large, :links => 'public' } %>
 	<% end %>
 <% end %>
