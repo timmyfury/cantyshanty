@@ -3,7 +3,7 @@
 <% content_for :title do %>Tagged: <%= params[:slug] %><% end %>
 
 <% content_for :content do %>
-	<h2><%= @title %></h2>
+	<h2>Tagged: <%= params[:slug] %></h2>
 
 	<% @posts.each do |post| %>
 		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :medium, :links => 'public' } %>
