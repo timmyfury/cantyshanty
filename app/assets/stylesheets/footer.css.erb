@@ -65,7 +65,29 @@ footer .pagination:after {
 	Media Queries
 **********************************************************************/
 @media screen and (max-width: 480px) {
-
+	footer {
+		margin: 0;
+		width: 480px;
+	}
+	footer .pagination {
+		margin: 20px 40px;
+	}
+	footer .pagination a,
+	footer .pagination a:hover,
+	footer .pagination a:focus,
+	footer .pagination .current,
+	footer .pagination .gap {
+		display: none;
+	}
+	footer .pagination .previous_page,
+	footer .pagination .next_page {
+		display: block;
+		font-size: 40px;
+	}
+	footer .pagination .previous_page span,
+	footer .pagination .next_page span {
+		display: none;
+	}
 }
 
 @media screen and (max-width: 320px) {

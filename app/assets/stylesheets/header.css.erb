@@ -61,7 +61,27 @@ header ul:after {
 	Media Queries
 **********************************************************************/
 @media screen and (max-width: 480px) {
-
+	header {
+		margin: 0;
+		width: 480px;
+	}
+	header li,
+	header .home,
+	header .twitter {
+		background-position: center center;
+		background-repeat: no-repeat;
+		margin: 0;
+	}
+	header li a,
+	header li a:hover,
+	header li a:focus {
+		height: 50px;
+		margin: 0;
+		overflow: hidden;
+		padding: 20px 35px;
+		text-indent: -9999px;
+		width: 50px;
+	}
 }
 
 @media screen and (max-width: 320px) {
