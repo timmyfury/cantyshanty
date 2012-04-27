@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120106163436) do
+ActiveRecord::Schema.define(:version => 20120427184745) do
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20120106163436) do
     t.string   "source_title"
     t.string   "source_url"
     t.text     "search"
+    t.text     "image_meta"
   end
 
   create_table "taggings", :force => true do |t|

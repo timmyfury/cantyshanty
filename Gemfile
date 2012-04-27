@@ -7,6 +7,7 @@ gem 'aws-s3'
 gem 'base58', '~> 0.1.0'
 gem 'jquery-rails'
 gem 'paperclip', '~> 2.4'
+gem 'paperclip-meta'
 gem 'twitter'
 gem 'will_paginate'
 

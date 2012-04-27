@@ -5,6 +5,7 @@
 
 	<%= render :partial => "layouts/post", :locals => { :post => @post, :format => :large, :links => 'none' } %>
 
+	<p><strong>Large image size:</strong> <%= @post.image.width(:large) %>px x <%= @post.image.height(:large) %>px</p>
 
 	<%= form_for(@post) do |f| %>
 	  <% if @post.errors.any? %>
