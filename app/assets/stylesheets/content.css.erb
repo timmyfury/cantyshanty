@@ -1,19 +1,47 @@
 /*
 	Content
 **********************************************************************/
-
 .content {
 	background: #FFF;
+	text-align: left;
 }
-
+.content h2 {
+	font-size: 36px;
+	font-weight: 200;
+	margin: 0;
+	padding: 20px;
+}
 .content section {
+	color: #444;
 	margin: 0 auto;
 	padding: 10px 0;
 	width: 1120px;
 }
+.content section article {
+	color: #FFF;
+	text-align: center;
+}
+.content .image a,
+.content .image a:hover,
+.content .image a:focus {
+	background: transparent;
+	border: 0;
+	display: block;
+	margin: 0;
+	overflow: hidden;
+	padding: 0;
+	text-decoration: none;
+	text-indent: 100%;
+}
+article.none .permanent,
+article.public .permanent {
+	display: none;
+}
 
 
-
+/*
+	Medium Entries
+**********************************************************************/
 article.medium {
 	background: #000;
 	float: left;
@@ -29,56 +57,74 @@ article.medium .image {
 	height: 400px;
 	width: 400px;
 }
-article .image a {
-	text-indent: 100%;
-	overflow: hidden;
-}
-
-article.large {
-	background: #000;
-	float: left;
-/*	height: 400px;*/
-	margin: 10px 0;
-	padding: 40px 0;
-	text-align: center;
-	width: 1120px;
-}
-
-article.large .image {
-	background-position: center center;
-	background-repeat: no-repeat;
-/*	height: 600px;*/
-/*	width: 400px;*/
-}
-
-
-
-
 article.medium h2,
-article.medium ul,
-article.medium .source,
-article.none .permanent,
-article.public .permanent {
+article.medium .tags,
+article.medium .source {
 	display: none;
 }
 
-
-.image a,
-.image a:hover,
-.image a:focus {
-	background: transparent;
-	border: 0;
-	display: block;
-	margin: 0;
-	padding: 0;
-	text-decoration: none;
+/*
+	Large Entries
+**********************************************************************/
+article.large {
+	background: #000;
+	float: left;
+	margin: 10px 0;
+	padding: 0 0;
+	text-align: center;
+	width: 1120px;
 }
+article.large .image {
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+article.large .tags {
+	list-style-type: none;
+	margin: 0;
+	padding: 20px;
+}
+article.large .tags li {
+	display: inline;
+	margin: 10px 0;
+	padding: 10px;
+}
+
+/*
+	Tag Cloud
+**********************************************************************/
+.tag-cloud {
+	list-style-type: none;
+	margin: 0;
+	padding: 0 20px 20px 20px;
+}
+.tag-cloud a,
+.tag-cloud a:hover,
+.tag-cloud a:focus {
+	color: #444;
+}
+.tag-cloud li {
+	float: left;
+	height: 42px;
+	line-height: 42px;
+}
+.tag-cloud a {
+	padding: 5px 10px;
+}
+.tag-cloud .tag-weight-1 { font-size: 12px; }
+.tag-cloud .tag-weight-2 { font-size: 16px; }
+.tag-cloud .tag-weight-3 { font-size: 20px; }
+.tag-cloud .tag-weight-4 { font-size: 24px; }
+.tag-cloud .tag-weight-5 { font-size: 28px; }
+.tag-cloud .tag-weight-6 { font-size: 32px; }
+.tag-cloud .tag-weight-7 { font-size: 36px; }
+.tag-cloud .tag-weight-8 { font-size: 42px; }
 
 /*
 	Clearfix
 **********************************************************************/
 section:after,
-article:after {
+article:after,
+.tag-cloud:after {
 	content: ".";
 	display: block;
 	height: 0;
@@ -90,201 +136,11 @@ article:after {
 	Media Queries
 **********************************************************************/
 @media screen and (max-width: 480px) {
-	#content {
-		width: 480px;
-	}
-	
-	#content h2 {
-		font-size: 40px;
-		margin: 15px 0;
-	}
+
 }
 
 @media screen and (max-width: 320px) {
-	#content {
-		width: 320px;
-	}
-	
-	#content h2 {
-		font-size: 40px;
-		margin: 15px 0;
-	}
+
 }
 
-
-
-/*
-	Entry
-**********************************************************************/
-.entry {
-	background: #eee;
-	border-top: 20px solid #ccc;
-	margin: 0 0 20px 0;
-	padding: 0 20px 20px;
-}
-
-.entry h2 a {
-	background:  #eee;
-}
-
-.entry h2 a:hover,
-.entry h2 a:focus {
-	background: #1c3260;
-}
-
-.entry ul {
-	margin: 0 0 20px 0;
-	padding: 0;
-}
-
-.entry ul li {
-	color: #999;
-	display: inline;
-	list-style-type: none;
-	padding: 0 5px 0 0;
-}
-
-.entry ul li a {
-	color: #999;
-}
-
-.entry ul li a:hover,
-.entry ul li a:focus {
-	background: #1c3260;
-	color: #fff;
-}
-
-@media screen and (max-width: 480px) {
-	.entry {
-		padding: 0 15px 20px;
-		width: 450px;
-	}
-	.entry ul {
-		width: 450px;
-	}
-	.entry ul li {
-		color: #999;
-		display: block;
-		float: left;
-		list-style-type: none;
-		padding: 0 5px 0 0;
-	}
-}
-
-@media screen and (max-width: 320px) {
-	.entry {
-		padding: 0 15px 20px;
-		width: 290px;
-	}
-	.entry ul {
-		width: 290px;
-	}
-	.entry ul li {
-		color: #999;
-		display: block;
-		float: left;
-		list-style-type: none;
-		padding: 0 5px 0 0;
-	}
-}
-
-/*
-	images
-**********************************************************************/
-/*.image {
-	float: left;
-	padding: 10px;
-	text-align: center;
-}*/
-
-/*.single .image {
-	float: none;
-	padding: 0;
-	text-align: left;
-}
-
-.image-cloud .image {
-	height: 400px;
-	width: 400px;
-}
-*/
-
-@media screen and (max-width: 480px) {
-	.image {
-		height: auto;
-		margin: 0 0 20px;
-		padding: 0;
-		width: 450px;
-	}
-
-	.image-cloud .image {
-		height: auto;
-		width: 450px;
-	}
-
-	.image img {
-		width: 450px;
-	}
-}
-
-@media screen and (max-width: 320px) {
-	.image {
-		height: auto;
-		margin: 0 0 0;
-		padding: 0;
-		width: 290px;
-	}
-
-	.image-cloud .image {
-		height: auto;
-		width: 290px;
-	}
-
-	.image img {
-		width: 290px;
-	}
-}
-
-/*
-	tags
-**********************************************************************/
-.source {
-	clear: both;
-	color: #999;
-	margin: 0;
-	padding: 15px 0;
-}
-.source a {
-	color: #1c3260;
-}
-.source a:hover,
-.source a:focus {
-	background: #1c3260;
-	color: #fff;
-}
-
-@media screen and (max-width: 320px) {
-	.source {
-		width: 290px;
-	}
-}
-
-/*
-	tags
-**********************************************************************/
-.tag-cloud li { height: 36px; line-height: 2.4em; }
-.tag-cloud .tag-used { background: #1c3260; color: #fff; }
-.tag-cloud .tag-weight-1 { font-size: 1.0em; }
-.tag-cloud .tag-weight-2 { font-size: 1.3em; }
-.tag-cloud .tag-weight-3 { font-size: 1.6em; }
-.tag-cloud .tag-weight-4 { font-size: 1.9em; }
-.tag-cloud .tag-weight-5 { font-size: 2.2em; }
-
-@media screen and (max-width: 480px) {
-	.tag-cloud li { padding: 10px }
-}
-
-@media screen and (max-width: 320px) {
-	.tag-cloud li { padding: 10px }
-}
 

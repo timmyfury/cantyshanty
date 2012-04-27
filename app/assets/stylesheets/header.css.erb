@@ -8,45 +8,48 @@ header {
 	padding: 0;
 	width: 1200px;
 }
-
 header h1,
 header nav,
 header ul,
 header li {
-	display: inline;
-	float: left;
+	display: block;
 	margin: 0;
 	padding: 0;
 }
-
-header h1 a,
-header li a,
-header h1 a:hover,
-header li a:hover,
-header h1 a:focus,
-header li a:focus {
+header h1 {
+	height: 0;
+	overflow: hidden;
+	text-indent: 100%;
+	width: 0;
+}
+header li {
 	background-color: transparent;
 	background-position: left center;
 	background-repeat: no-repeat;
+	float: left;
+	margin: 0 45px;
+}
+header .home { background-image: url('<%= image_path 'icon-home-50x50.png' %>'); margin: 0 45px 0 8px; }
+header .about { background-image: url('<%= image_path 'icon-about-50x50.png' %>'); }
+header .tags { background-image: url('<%= image_path 'icon-tags-50x50.png' %>'); }
+header .twitter { background-image: url('<%= image_path 'icon-twitter-50x50.png' %>'); margin: 0 0 0 45px; }
+
+header li a,
+header li a:hover,
+header li a:focus {
 	color: #FFF;
 	display: block;
 	font-size: 50px;
 	font-weight: 200;
 	line-height: 50px;
-	height: 75px;
-	margin: 0 30px;
-	padding: 20px 0 0 70px;
+	margin: 0;
+	padding: 20px 0 20px 60px;
 }
-
-header .home { background-image: url('<%= image_path 'icon-home-50x50.png' %>'); }
-header .about { background-image: url('<%= image_path 'icon-about-50x50.png' %>'); }
-header .tags { background-image: url('<%= image_path 'icon-tags-50x50.png' %>'); }
-header .twitter { background-image: url('<%= image_path 'icon-twitter-50x50.png' %>'); }
 
 /*
 	Clearfix
 **********************************************************************/
-header:after {
+header ul:after {
 	content: ".";
 	display: block;
 	height: 0;

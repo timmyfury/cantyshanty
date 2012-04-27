@@ -13,8 +13,8 @@
 
 	<% if @post %>
 		<div class="pagination">
-			<% if @post.previous %><a class="prev" href="<%= short_url(:slug => @post.previous.slug) %>">&#8592; <%= @post.previous.title %></a><% end %>
-			<% if @post.next %><a class="next" href="<%= short_url(:slug => @post.next.slug) %>"><%= @post.next.title %> &#8594;</a><% end %>
+			<% if @post.previous %><a class="previous_page" href="<%= short_url(:slug => @post.previous.slug) %>">&#8592; <%= @post.previous.title %></a><% end %>
+			<% if @post.next %><a class="next_page" href="<%= short_url(:slug => @post.next.slug) %>"><%= @post.next.title %> &#8594;</a><% end %>
 		</div>
 	<% end %>
 

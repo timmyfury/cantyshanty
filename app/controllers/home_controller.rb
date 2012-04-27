@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   layout "public"
 
   def index
-    @posts = Post.published.recent.paginate(:page => params[:page], :per_page => 30)
+    @posts = Post.published.recent.paginate(:page => params[:page], :per_page => 20)
   end
 
   def about; end;
@@ -17,7 +17,7 @@ class HomeController < ApplicationController
   end
 
   def tag
-    @posts = Post.published.tagged_with(params[:slug]).paginate(:page => params[:page], :per_page => 30)
+    @posts = Post.published.tagged_with(params[:slug]).paginate(:page => params[:page], :per_page => 20)
   end
 
   def image

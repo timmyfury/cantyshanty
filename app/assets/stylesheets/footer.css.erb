@@ -1,35 +1,67 @@
 /*
 	Footer
 **********************************************************************/
-#footer {
-	background: #eee;
-	border-top: 20px solid #ccc;
+footer {
+	background: #900;
+	color: #fff;
 	display: block;
-	font-size: 30px;
-	margin: 0;
-	padding: 20px;
-	position: relative;
-	text-align: center;
-}
-#footer .prev {
-	float: left;
-}
-#footer .next {
-	float: right;
+	font-size: 16px;
+	margin: 0 auto;
+	padding: 0;
+	width: 1200px;
 }
 
+footer .pagination {
+	margin: 30px;
+}
+footer .pagination a,
+footer .pagination a:hover,
+footer .pagination a:focus,
+footer .pagination .current,
+footer .pagination .gap {
+	background: transparent;
+	color: #fff;
+	padding: 0 10px;
+}
+footer .pagination .disabled,
+footer .pagination .current,
+footer .pagination .gap {
+	opacity: 0.4;
+}
+
+footer .pagination .previous_page,
+footer .pagination .previous_page:hover {
+	float: left;
+	padding: 0 10px 0 0;
+}
+footer .pagination .next_page,
+footer .pagination .next_page:hover {
+	float: right;
+	padding: 0 0 0 10px;
+}
+
+footer .copyright {
+	margin: 30px 0 20px;
+}
+
+/*
+	Clearfix
+**********************************************************************/
+footer:after,
+footer .pagination:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+
+
 @media screen and (max-width: 480px) {
-	#footer {
-		font-size: 20px;
-		padding: 20px 15px;
-		width: 470px;
-	}
+
 }
 
 @media screen and (max-width: 320px) {
-	#footer {
-		font-size: 20px;
-		padding: 20px 15px;
-		width: 290px;
-	}
+
 }
