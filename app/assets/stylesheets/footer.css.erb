@@ -28,20 +28,25 @@ footer .pagination .current,
 footer .pagination .gap {
 	opacity: 0.4;
 }
-
+footer .pagination .previous_page,
+footer .pagination .next_page {
+	white-space: nowrap;
+}
 footer .pagination .previous_page,
 footer .pagination .previous_page:hover {
 	float: left;
 	padding: 0 10px 0 0;
+	text-align: left;
 }
 footer .pagination .next_page,
 footer .pagination .next_page:hover {
 	float: right;
 	padding: 0 0 0 10px;
+	text-align: right;
 }
 
 footer .copyright {
-	margin: 30px 0 20px;
+	margin: 30px 30px 20px;
 }
 
 /*
@@ -56,12 +61,37 @@ footer .pagination:after {
 	visibility: hidden;
 }
 
-
-
+/*
+	Media Queries
+**********************************************************************/
 @media screen and (max-width: 480px) {
 
 }
 
 @media screen and (max-width: 320px) {
-
+	footer {
+		margin: 0;
+		width: 320px;
+	}
+	footer .pagination {
+		margin: 20px 40px;
+	}
+	footer .pagination a,
+	footer .pagination a:hover,
+	footer .pagination a:focus,
+	footer .pagination .current,
+	footer .pagination .gap {
+		display: none;
+	}
+	footer .pagination .previous_page,
+	footer .pagination .next_page {
+		display: block;
+		font-size: 40px;
+	}
+	footer .pagination .previous_page span,
+	footer .pagination .next_page span {
+		display: none;
+	}
 }
+
+

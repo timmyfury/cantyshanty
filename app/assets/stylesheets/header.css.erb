@@ -61,41 +61,30 @@ header ul:after {
 	Media Queries
 **********************************************************************/
 @media screen and (max-width: 480px) {
-	header {
-		width: 480px;
-	}
-	header h1 a,
-	header li a,
-	header h1 a:hover,
-	header li a:hover,
-	header h1 a:focus,
-	header li a:focus {
-		background-position: center center;
-		background-repeat: no-repeat;
-		height: 50px;
-		margin: 0;
-		padding: 20px 22px;
-		text-indent: -9999px;
-		width: 50px;
-	}
+
 }
 
 @media screen and (max-width: 320px) {
 	header {
+		margin: 0;
 		width: 320px;
 	}
-	header h1 a,
-	header li a,
-	header h1 a:hover,
-	header li a:hover,
-	header h1 a:focus,
-	header li a:focus {
+	header li,
+	header .home,
+	header .twitter {
 		background-position: center center;
 		background-repeat: no-repeat;
+		margin: 0;
+	}
+	header li a,
+	header li a:hover,
+	header li a:focus {
 		height: 50px;
 		margin: 0;
+		overflow: hidden;
 		padding: 20px 15px;
 		text-indent: -9999px;
 		width: 50px;
 	}
 }
+

@@ -20,7 +20,9 @@
 	</div>
 
 	<% if post.tags.size > 0 %>
-		<ul class="tags"><% post.tags.each do |tag| %><li><a href="<%= tag_url(:slug => tag.name) %>"><%= tag %></a></li><% end %></ul>
+		<ul class="tags">
+			<% post.tags.each do |tag| %><li><a href="<%= tag_url(:slug => tag.name) %>"><%= tag %></a></li> <% end %>
+		</ul>
 	<% end %>
 
 	<% if post.sourced %><p class="source">source: <%= link_to post.source_title, post.source_url %></p><% end %>

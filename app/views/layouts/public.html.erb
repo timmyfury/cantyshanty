@@ -8,13 +8,15 @@
 
 <% content_for :footer do %>
 	<% if @posts %>
-		<%= will_paginate @posts %>
+		<%= will_paginate @posts,
+			:previous_label => '&larr;<span> Previous</span>',
+			:next_label => '<span>Next </span>&rarr;' %>
 	<% end %>
 
 	<% if @post %>
 		<div class="pagination">
-			<% if @post.previous %><a class="previous_page" href="<%= short_url(:slug => @post.previous.slug) %>">&#8592; <%= @post.previous.title %></a><% end %>
-			<% if @post.next %><a class="next_page" href="<%= short_url(:slug => @post.next.slug) %>"><%= @post.next.title %> &#8594;</a><% end %>
+			<% if @post.previous %><a class="previous_page" href="<%= short_url(:slug => @post.previous.slug) %>">&larr;<span> <%= @post.previous.title %></span></a><% end %>
+			<% if @post.next %><a class="next_page" href="<%= short_url(:slug => @post.next.slug) %>"><span><%= @post.next.title %> </span>&rarr;</a><% end %>
 		</div>
 	<% end %>
 
