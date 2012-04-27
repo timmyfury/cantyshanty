@@ -1,4 +1,4 @@
-<article class="<%= format %> <%= links %>" style="width: <%= post.image.width - 80 %>px;">
+<article class="<%= format %> <%= links %>" style="width: <%= post.image.width(format) - 80 %>px;">
 	<% if post.title %>
 		<% if links == 'public' and post.slug %>
 			<h2><a href="<%= short_url(:slug => post.slug) %>"><%= post.title %></a></h2>
