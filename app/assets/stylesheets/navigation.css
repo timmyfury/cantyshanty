@@ -27,6 +27,7 @@ nav.secondary li a {
 	display: block;
 	margin: 0;
 	padding: 12px 14px 10px;
+	color: #000;
 }
 
 nav.secondary li.active a {
