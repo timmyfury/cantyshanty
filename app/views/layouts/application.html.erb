@@ -22,6 +22,8 @@
 		<% if content_for?(:canonical) %><link rel="canonical" href="<%= yield(:canonical) %>" /><% end %>
 
 		<%= csrf_meta_tags %>
+
+		<% if content_for?(:analytics) %><%= yield(:analytics) %><% end %>
 	</head>
 	<body>
 		<header>
