@@ -1,14 +1,13 @@
 <% content_for :title do %>404 Not Here!<% end %>
 
 <% content_for :content do %>
+	<article class="info">
+		<h2>404 Not Here!</h2>
+	</article>
 
-	<h2>404 Not Here!</h2>
 	<p>The page you were looking for isn't here. Try one of these random images instead.</p>
 
 	<% @posts.each do |post| %>
-		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :medium } %>
+		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :large, :links => 'public' } %>
 	<% end %>
-
-
-
 <% end %>
