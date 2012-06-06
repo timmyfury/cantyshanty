@@ -4,6 +4,7 @@
 
 <% if content_for?(:analytics) %><%= yield(:analytics) %><% end %>
 
+<% content_for :body_class do %>public<% end %>
 
 <% content_for :navigation do %>
 	<script type="text/javascript">

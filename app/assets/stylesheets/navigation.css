@@ -6,16 +6,15 @@ nav.secondary {
 	border-top: 20px solid #ccc;
 	color: #999;
 	font-size: 30px;
-	line-height: 32px;
-	margin: 0 0 20px 0;
+	margin: 0 0 20px;
 	padding: 10px;
 }
 nav.secondary ul {
 	display: block;
-	margin: 0;
+	margin: 0 auto;
 	padding: 0;
+	width: 1200px;
 }
-
 nav.secondary li {
 	display: block;
 	float: left;
@@ -26,103 +25,108 @@ nav.secondary li {
 nav.secondary li a {
 	display: block;
 	margin: 0;
-	padding: 12px 14px 10px;
+	padding: 12px 14px;
 	color: #000;
 }
-
+nav.secondary li a span,
+nav.secondary li a em {
+	display: block;
+}
 nav.secondary li.active a {
-	background: #1c3260;
+	background: #900;
 	color: #FFF;
 }
-nav.secondary li.search form {
-	margin: 0;
-	padding: 7px;
+nav.secondary .search {
+	display: block;
+	margin: 0 auto;
+	width: 1200px;
 }
-nav.secondary li.search input {
+nav.secondary .search input {
 	border: 1px solid #ccc;
 	border-radius: 3px;
 		-moz-border-radius: 3px;
 		-webkit-border-radius: 3px;
+	display: block;
 	font-size: 20px;
-	margin: 0;
+	font-weight: 200;
+	margin: 10px;
 	padding: 5px;
 	position: relative;
+	text-align: center;
+	width: 1166px;
 }
 nav.secondary ul li.show-more-options {
 	display: none;
 }
 
-@media screen and (max-width: 320px) {
+
+/*
+	Clearfix
+**********************************************************************/
+nav.secondary:after,
+nav.secondary ul:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+
+/*
+	Media Queries
+**********************************************************************/
+@media screen and (max-width: 480px) {
 	nav.secondary {
-		font-size: 16px;
-		line-height: 18px;
-		margin: 0 0 20px 0;
-		padding: 5px 5px;
-		width: 310px;
+		font-size: 14px;
+		margin: 0 0 10px;
+		padding: 0;
 	}
 	nav.secondary ul {
-		padding: 0;
+		padding: 7px;
+		width: 480px;
 	}
-
 	nav.secondary li {
-		margin: 5px 2px;
-		text-align: center;
-		width: 98px;
+		margin: 3px;
 	}
 	nav.secondary li a {
-		display: block;
-		margin: 0;
-		padding: 10px;
+		padding: 12px 8px;
+		width: 132px;
 	}
-	
-	nav.secondary ul li span,
-	nav.secondary ul li em {
-		display: block;
+	nav.secondary .search {
+		width: 480px;
 	}
-
-	nav.secondary li.active a {
-		background: #1c3260;
-		color: #FFF;
-	}
-
-	nav.secondary li.search {
-		clear: both;
-		float: none;
-		margin: 10px 2px;
-		padding: 10px 0 0 0;
-		text-align: center;
-		width: auto;
-	}
-
-	nav.secondary li.search form {
-		margin: 0;
-		padding: 0;
-	}
-	nav.secondary li.search input {
-		border: 1px solid #ccc;
-		border-radius: 3px;
-			-moz-border-radius: 3px;
-			-webkit-border-radius: 3px;
-		font-size: 16px;
-		margin: 0;
-		padding: 5px;
-		width: 270px;
-	}
-	
-	
-	
-	nav.secondary ul li.show-more-options {
-		display: block;
-	}
-	nav.secondary ul li.show-more-options a:hover,
-	nav.secondary ul li.show-more-options a:focus {
-		background: #eee;
-		color: #1c3260;
-	}
-	nav.secondary ul li.more-options {
-		display: none;
-	}
-	nav.secondary {
-		display: none !important;
+	nav.secondary .search input {
+		font-size: 14px;
+		margin: 3px 10px 10px;
+		width: 448px;
 	}
 }
+
+@media screen and (max-width: 320px) {
+	nav.secondary {
+		font-size: 14px;
+		margin: 0 0 10px;
+		padding: 0;
+	}
+	nav.secondary ul {
+		padding: 7px;
+		width: 320px;
+	}
+	nav.secondary li {
+		margin: 3px;
+	}
+	nav.secondary li a {
+		padding: 12px 8px;
+		width: 81px;
+	}
+	nav.secondary .search {
+		width: 320px;
+	}
+	nav.secondary .search input {
+		font-size: 14px;
+		margin: 3px 10px 10px;
+		width: 288px;
+	}
+}
+

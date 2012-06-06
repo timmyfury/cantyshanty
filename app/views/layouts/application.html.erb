@@ -25,7 +25,7 @@
 
 		<% if content_for?(:analytics) %><%= yield(:analytics) %><% end %>
 	</head>
-	<body>
+	<body<% if content_for?(:body_class) %> class="<%= yield(:body_class) %>"<% end %>>
 		<header>
 			<h1><a href="<%= root_url %>">Canty Shanty</a></h1>
 			<nav class="primary">
