@@ -1,12 +1,8 @@
-<% content_for :styles do %><% end %>
-<% content_for :scripts do %><% end %>
-<% content_for :navigation do %><% end %>
-
 <% if content_for?(:analytics) %><%= yield(:analytics) %><% end %>
 
 <% content_for :body_class do %>public<% end %>
 
-<% content_for :navigation do %>
+<% content_for :analytics do %>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
 		_gaq.push(['_setAccount', 'UA-9639324-4']);

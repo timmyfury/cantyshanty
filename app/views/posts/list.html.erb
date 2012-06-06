@@ -1,5 +1,7 @@
 <% content_for :content do %>
-	<h2><%= @status.capitalize -%> <% if @status == 'search' && params[:q] -%><span><%= page_entries_info @posts %> of <%= @search_count %> for "<%= params[:q] %>"</span><% end -%></h2>
+	<article class="info">
+		<h2><%= @status.capitalize -%> <% if @status == 'search' && params[:q] -%><span><%= page_entries_info @posts %> of <%= @search_count %> for "<%= params[:q] %>"</span><% end -%></h2>
+	</article>
 
 	<% if @posts %>
     	<% @posts.each do |post| %>

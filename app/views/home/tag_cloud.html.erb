@@ -3,11 +3,13 @@
 <% content_for :title do %>Tags<% end %>
 
 <% content_for :content do %>
-	<h2>Tags</h2>
+	<article class="info">
+		<h2>Tags</h2>
 
-	<ul class="tag-cloud">
-		<% tag_cloud(@tags, %w(tag-weight-1 tag-weight-2 tag-weight-3 tag-weight-4 tag-weight-5 tag-weight-6 tag-weight-7 tag-weight-8)) do |tag, css_class| %>
-			<li class="<%= css_class %>"><%= link_to tag.name, { :action => :tag, :slug => tag.name } %></li>
-		<% end %>
-	</ul>
+		<ul class="tag-cloud">
+			<% tag_cloud(@tags, %w(tag-weight-1 tag-weight-2 tag-weight-3 tag-weight-4 tag-weight-5 tag-weight-6 tag-weight-7 tag-weight-8)) do |tag, css_class| %>
+				<li class="<%= css_class %>"><%= link_to tag.name, { :action => :tag, :slug => tag.name } %></li>
+			<% end %>
+		</ul>
+	</article>
 <% end %>

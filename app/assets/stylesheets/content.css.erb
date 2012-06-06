@@ -16,11 +16,27 @@
 	margin: 0 auto;
 	padding: 10px 0;
 }
+
 .content section article {
 	background: #000;
 	color: #FFF;
 	margin: 30px auto 40px;
 	padding: 20px 20px 0 20px;
+	text-align: center;
+}
+.content article.info {
+	background: #FFF;
+	color: #444;
+	margin: 0 auto;
+	text-align: left;
+	width: 1200px;
+}
+.content article.info h2 {
+	border-bottom: #bbb 1px solid;
+	padding: 0 0 10px;
+}
+
+.content section article h2 {
 	text-align: center;
 }
 .content .image {
@@ -38,6 +54,11 @@
 	padding: 0;
 	text-decoration: none;
 }
+.content article.info a {
+	color: #900;
+	text-decoration: underline;
+}
+
 .content .source {
 	margin: 0 0 20px;
 	padding: 0;
@@ -67,12 +88,13 @@ article .tags li {
 .tag-cloud {
 	list-style-type: none;
 	margin: 0;
-	padding: 0 20px 20px 20px;
+	padding: 0;
 }
-.tag-cloud a,
-.tag-cloud a:hover,
-.tag-cloud a:focus {
+.content article .tag-cloud a,
+.content article .tag-cloud a:hover,
+.content article .tag-cloud a:focus {
 	color: #444;
+	text-decoration: none;
 }
 .tag-cloud li {
 	float: left;
@@ -128,6 +150,11 @@ article:after,
 	.content section article {
 		margin: 10px auto 20px;
 		width: 240px !important;
+	}
+	.content section article.info {
+		margin: 10px auto 20px;
+		text-align: left;
+		width: 280px !important;
 	}
 	.content .image img {
 		width: 320px !important;

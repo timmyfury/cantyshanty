@@ -8,6 +8,8 @@ class Post < ActiveRecord::Base
 
   acts_as_taggable
 
+  # acts_as_taggable :tags, :rooms, :colors, 
+
   has_attached_file :image,
                     :styles => {
                       :large => "600x600>",
