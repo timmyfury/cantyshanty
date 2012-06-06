@@ -2,8 +2,33 @@ class HomeController < ApplicationController
 
   layout "public"
 
+  def list
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @posts }
+    end
+  end
+
   def index
     @posts = Post.published.recent.paginate(:page => params[:page], :per_page => 20)
+    render :list
+  end
+
+  def search
+    @q = params[:q].downcase || ''
+
+    patterns = []
+    terms = []
+
+    @q.split.each do |t|
+      patterns.push 'search LIKE ?'
+      terms.push "%#{t}%"
+    end
+
+    args = terms.unshift(patterns.join(" AND "))
+
+    @posts = Post.where(*args).order("title").paginate(:page => params[:page], :per_page => 30)
+    render :list
   end
 
   def about; end;

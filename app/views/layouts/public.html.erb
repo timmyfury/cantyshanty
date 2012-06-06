@@ -16,7 +16,11 @@
 	</script>	
 <% end %>
 
-
+<% content_for :navigation do %>
+	<form action="<%= search_url %>" method="GET" class="search">
+		<input type="text" placeholder="Search" name="q" value="<%= params[:q] %>" />
+	</form>
+<% end %>
 
 <% content_for :content do %>
 	<%= yield %>
