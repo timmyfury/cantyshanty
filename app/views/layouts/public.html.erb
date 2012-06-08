@@ -5,7 +5,7 @@
 <% content_for :analytics do %>
 	<script type="text/javascript">
 		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-9639324-4']);
+		_gaq.push(['_setAccount', '<%= GoogleAnalytics::ACCOUNT %>']);
 		_gaq.push(['_trackPageview']);
 
 		(function() {
