@@ -8,7 +8,7 @@ xml.rss :version => "2.0" do
     for post in @posts
       xml.item do
         xml.title post.title
-        xml.description render(:inline => "<%= image_tag post.image.url(:large), :alt => post.title %>", :locals => { :post => post })
+        xml.description render(:inline => "<%= image_tag post.image.url(:large), :alt => post.title %> <%= image_tag beacon_url(:slug => post.slug) %>", :locals => { :post => post })
         xml.pubDate post.created_at.to_s(:rfc822)
         xml.link short_url(:slug => post.slug)
         xml.guid short_url(:slug => post.slug)

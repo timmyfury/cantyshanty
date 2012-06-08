@@ -5,6 +5,8 @@ Cantyshanty::Application.routes.draw do
   match 'rss' => 'home#rss', :format => :xml, :as => :rss
   match 'tag/:slug' => 'home#tag', :as => :tag
   match 'tag' => 'home#tag_cloud', :as => :tag_cloud
+
+  match '_:slug/beacon' => 'home#beacon', :format => :gif, :as => :beacon
   match '_:slug' => 'home#image', :as => :short
 
   match 'tc/:slug' => 'home#legacy', :as => :legacy
