@@ -10,7 +10,7 @@ class HomeController < ApplicationController
   end
 
   def index
-    @posts = Post.published.recent.paginate(:page => params[:page], :per_page => 20)
+    @posts = Post.includes(:tags).published.recent.paginate(:page => params[:page], :per_page => 20)
     render :list
   end
 
@@ -34,7 +34,7 @@ class HomeController < ApplicationController
   def about; end;
 
   def beacon
-    @post = Post.find_by_slug!(params[:slug])
+    @post = Post.includes(:tags).find_by_slug!(params[:slug])
     GoogleAnalytics.track("#{@post.title} | Canty Shanty", short_path(:slug => @post.slug), source='RSS', utma=cookies[:__utma])
     send_data(Base64.decode64("R0lGODlhAQABAPAAAAAAAAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="), :type => "image/gif", :disposition => "inline")
   end
@@ -53,6 +53,9 @@ class HomeController < ApplicationController
 
   def image
     @post = Post.find_by_slug!(params[:slug])
+    respond_to do |format|
+      format.html
+    end
   end
 
   def legacy
