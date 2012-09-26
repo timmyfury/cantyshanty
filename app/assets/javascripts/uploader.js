@@ -72,7 +72,7 @@
 			var template = '<div class="uploader">' +
 								'<div class="target">' +
 									'<div class="instructions">' +
-										'Drag and drop images here to upload them or ' +
+										'<span class="not-mobile">Drag and drop images here to upload them or </span>' +
 										'<a href="#" class="select">select files to upload</a>.' +
 									'</div>' +
 									'<div class="status"></div>' +

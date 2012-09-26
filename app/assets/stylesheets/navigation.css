@@ -83,7 +83,7 @@ nav.secondary ul:after {
 		padding: 0;
 	}
 	nav.secondary ul {
-		padding: 7px;
+		padding: 0;
 		width: 480px;
 	}
 	nav.secondary li {
@@ -110,15 +110,16 @@ nav.secondary ul:after {
 		padding: 0;
 	}
 	nav.secondary ul {
-		padding: 7px;
-		width: 320px;
+		margin: 7px;
+		width: 306px;
 	}
 	nav.secondary li {
 		margin: 3px;
 	}
 	nav.secondary li a {
-		padding: 12px 8px;
-		width: 81px;
+		min-height: 36px;
+		padding: 10px 8px;
+		width: 80px;
 	}
 	nav.secondary .search {
 		width: 320px;
