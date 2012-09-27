@@ -19,14 +19,12 @@ group :production do
   gem 'pg'
 end
 
-group :admin do
+group :development do
   gem 'pg'
   gem 'heroku'
   gem 'taps'
   gem 'sequel'
-end
-
-group :development do
+  
   gem 'foreman'
   gem 'mysql2', '>= 0.3.11'
 end
