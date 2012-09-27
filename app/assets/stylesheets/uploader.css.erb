@@ -33,13 +33,19 @@
 .file {
 	display: none;
 }
-
+.uploader .file-list:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
 .uploader .file-list img {
 	background: url("<%= asset_path 'loader.gif' %>") center center no-repeat;
 	border: 1px solid #1c3260;
 	display: block;
 	min-height: 100px;
-	width: 200px;
+	width: 300px;
 }
 .uploader .file-list {
 	border-collapse: collapse;
@@ -53,4 +59,10 @@
 }
 .uploader .file-list td.full {
 	width: 100%;
+}
+
+.uploader .file-item {
+	float: left;
+	padding: 10px;
+	width: 300px;
 }

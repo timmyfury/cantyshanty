@@ -22,11 +22,11 @@
 		this.name = file.name;
 		this.id = null;
 
-		var template = '<tr class="file-item">' +
-							'<td><img class="file-image" /></td>' +
-							'<td class="full"><span class="file-name">' + this.name + '</span></td>' +
-							'<td><span class="file-status">' + this.status + '</span></td>' +
-						'</tr>';
+		var template = '<div class="file-item">' +
+							'<div><img class="file-image" /></div>' +
+							'<div><span class="file-name">' + this.name + '</span></div>' +
+							'<div><span class="file-status">' + this.status + '</span></div>' +
+						'</div>';
 
 		this.node = $(template);
 		this.imageNode = this.node.find('.file-image');
@@ -78,7 +78,7 @@
 									'<div class="status"></div>' +
 									'<input class="file" type="file" multiple="true" accept="image/*" />' +
 								'</div>' +
-								'<table class="file-list"></table>' +
+								'<div class="file-list"></div>' +
 							'</div>';
 
 			this.node = $(template);
