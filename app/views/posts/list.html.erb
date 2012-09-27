@@ -1,6 +1,10 @@
 <% content_for :content do %>
 	<article class="info">
-		<h2><%= @status.capitalize -%> <% if @status == 'search' && params[:q] -%><span><%= page_entries_info @posts %> of <%= @search_count %> for "<%= params[:q] %>"</span><% end -%></h2>
+		<% if @status == 'search' and @q and @q != '' -%>
+    	    <h2>Search results <%= page_entries_info @posts %> for <strong><%= @q %></strong></h2>
+    	<% else -%>
+    	    <h2><%= @status.capitalize -%></h2>
+    	<% end -%>
 	</article>
 
 	<% if @posts %>

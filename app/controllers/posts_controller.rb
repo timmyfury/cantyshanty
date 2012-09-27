@@ -4,14 +4,11 @@ class PostsController < ApplicationController
   before_filter :authenticate
   before_filter :get_post_counts
   
-  def get_post_counts
-    @status = params[:action] == 'index' ? 'backlog' : params[:action]
-    @attributed_count = Post.attributed.count
-    @backlog_count = Post.backlog.count
-    @draft_count = Post.drafts.count
-    @published_count = Post.published.count
-    @unattributed_count = Post.unattributed.count
-    @unpublished_count = Post.unpublished.count
+  def list
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @posts }
+    end
   end
 
   def attributed
@@ -30,19 +27,7 @@ class PostsController < ApplicationController
   end
 
   def search
-    @q = params[:q].downcase || ''
-
-    patterns = []
-    terms = []
-
-    @q.split.each do |t|
-      patterns.push 'search LIKE ?'
-      terms.push "%#{t}%"
-    end
-
-    args = terms.unshift(patterns.join(" AND "))
-
-    @posts = Post.where(*args).order("title").paginate(:page => params[:page], :per_page => 30)
+    @posts = Post.where(@q_args).order("title").paginate(:page => params[:page], :per_page => 30)
     render :list
   end
 
@@ -59,13 +44,6 @@ class PostsController < ApplicationController
   def index
     @posts = Post.random(30, false).paginate(:page => params[:page], :per_page => 20)
     render :list
-  end
-
-  def list
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
-    end
   end
 
   # GET /posts/1
@@ -161,4 +139,13 @@ class PostsController < ApplicationController
       end
     end
 
+    def get_post_counts
+      @status = params[:action] == 'index' ? 'backlog' : params[:action]
+      @attributed_count = Post.attributed.count
+      @backlog_count = Post.backlog.count
+      @draft_count = Post.drafts.count
+      @published_count = Post.published.count
+      @unattributed_count = Post.unattributed.count
+      @unpublished_count = Post.unpublished.count
+    end
 end

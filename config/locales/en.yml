@@ -1,5 +1,14 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  will_paginate:
+    page_entries_info:
+      single_page:
+        zero:  "No images found"
+        one:   "Displaying 1 image"
+        other: "Displaying all %{count} images"
+      single_page_html:
+        zero:  "No image found"
+        one:   "Displaying <strong>1</strong> image"
+        other: "Displaying <strong>all %{count}</strong> images"
+
+      multi_page: "<strong>%{from}</strong> - <strong>%{to}</strong> of <strong>%{count}</strong>"
+      multi_page_html: "<strong>%{from}</strong> - <strong>%{to}</strong> of <strong>%{count}</strong>"

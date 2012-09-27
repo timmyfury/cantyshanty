@@ -1,11 +1,11 @@
-<% content_for :canonical do %><%= root_url %><% end %>
+<% content_for :title do %>500 Internal Server Error!<% end %>
 
 <% content_for :content do %>
-	<% if params[:q] -%>
 	<article class="info">
-		<h2>Search results for "<%= params[:q] %>"</h2>
+		<h2>500 Internal Server Error!</h2>
 	</article>
-	<% end -%>
+
+    <p>We're sorry, but something went wrong. We've been notified about this issue and we'll take a look at it shortly.</p>
 
 	<% @posts.each do |post| %>
 		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :large, :links => 'public' } %>

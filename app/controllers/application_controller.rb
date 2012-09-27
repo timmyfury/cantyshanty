@@ -1,9 +1,30 @@
 class ApplicationController < ActionController::Base
+
   protect_from_forgery
 
-  def not_found
-    @posts = Post.random(3, true).paginate(:page => params[:page], :per_page => 20)
-    render :template => 'home/error_404', :status => 404
+  before_filter :parse_search_params
+
+  def list
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
+  end
+  
+private
+
+  def parse_search_params
+    @q = params[:q] ? params[:q].downcase : ''
+
+    patterns = []
+    terms = []
+
+    @q.split.each do |t|
+      patterns.push 'search LIKE ?'
+      terms.push "%#{t}%"
+    end
+
+    @q_args = terms.unshift(patterns.join(" AND "))
   end
 
 end

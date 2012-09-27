@@ -1,0 +1,13 @@
+<% content_for :canonical do %><%= root_url %><% end %>
+
+<% content_for :content do %>
+	<% if @q and @q != '' -%>
+	<article class="info">
+	    <h2>Search results <%= page_entries_info @posts %> for <strong><%= @q %></strong></h2>
+	</article>
+	<% end -%>
+
+	<% @posts.each do |post| %>
+		<%= render :partial => "layouts/post", :locals => { :post => post, :format => :large, :links => 'public' } %>
+	<% end %>
+<% end %>
