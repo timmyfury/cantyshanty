@@ -1,0 +1,78 @@
+.tbl {
+	position: relative;
+	width: 400px;
+}
+.tbl-value-list {
+	list-style-type: none;
+	margin: 10px auto;
+	padding: 0;
+	text-align: left;
+	width: 400px;
+}
+.tbl-value {
+	border: 1px solid #555;
+	cursor: pointer;
+	float: left;
+	margin: 5px;
+	padding: 7px 10px;
+}
+.tbl-value-list:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.tbl-suggest-list {
+	background: #fff;
+	border: 1px solid #555;
+	display: none;
+	list-style-type: none;
+	margin: 0;
+	max-height: 390px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 400px;
+}
+.tbl-suggest {
+	background: #fff;
+	border-bottom: 1px solid #555;
+	color: #555;
+	cursor: pointer;
+	margin: 0;
+	padding: 7px 10px;
+}
+.tbl-suggest-active {
+	background: #555;
+	color: #fff;
+}
+
+/*
+	Media Queries
+**********************************************************************/
+@media screen and (max-width: 480px){
+	.tbl {
+		width: 450px;
+	}
+	.tbl-value-list {
+		width: 450px;
+	}
+	.tbl-suggest-list {
+		max-height: 390px;
+		width: 450px;
+	}
+}
+
+@media screen and (max-width: 320px) {
+	.tbl {
+		width: 290px;
+	}
+	.tbl-value-list {
+		width: 290px;
+	}
+	.tbl-suggest-list {
+		max-height: 390px;
+		width: 290px;
+	}
+}

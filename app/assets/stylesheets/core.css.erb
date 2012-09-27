@@ -20,9 +20,24 @@ a:focus {
 /*
 	Forms
 **********************************************************************/
-.field { font-size: 20px; padding: 15px 0; }
-.field label { display: block; }
-.field input { font-size: 20px; padding: 5px; }
+.field {
+	font-size: 20px;
+	padding: 15px 0;
+	margin: 0 auto;
+	width: 400px;
+}
+.field label { 
+	display: block;
+}
+.field input,
+.field textarea {
+	font-size: 20px;
+	padding: 5px;
+	width: 400px;
+}
+.field textarea {
+	height: 23px;
+}
 
 .actions { padding: 15px 0; }
 .actions input { font-size: 30px; }
@@ -49,6 +64,13 @@ a:focus {
 		overflow-x: hidden;
 		width: 480px;
 	}
+	.field {
+		width: 450px;
+	}
+	.field input,
+	.field textarea {
+		width: 450px;
+	}
 	.not-mobile {
 		display: none !important;
 	}
@@ -58,6 +80,13 @@ a:focus {
 	body {
 		overflow-x: hidden;
 		width: 320px;
+	}
+	.field {
+		width: 290px;
+	}
+	.field input,
+	.field textarea {
+		width: 280px;
 	}
 	.not-mobile {
 		display: none !important;

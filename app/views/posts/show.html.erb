@@ -27,8 +27,10 @@
 
 	  <div class="field">
 	    <%= f.label :tag_list %>
-	    <%= f.text_field :tag_list, :autocapitalize => "off" %> <a class="cloud-toggle">Show tag cloud</a>
+	    <%= f.text_field :tag_list, :autocapitalize => "off" %>
 	  </div>
+
+      <input type="hidden" class="tag-list" value="<% @tags.each do |tag| -%><%= tag.name -%>|||<% end -%>" />
 
 	  <div class="field">
 	    <%= f.label :source_title %>

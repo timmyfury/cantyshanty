@@ -50,8 +50,15 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @tags = Post.published.tag_counts.sort{|x, y| x.name.downcase <=> y.name.downcase }
+    @tags = Post.published.tag_counts.sort{|x, y| y.count <=> x.count }
+    # @tags = Post.published.tag_counts
     @status = @post.status
+
+    puts "*"*50
+    @tags.each do |t|
+      puts "#{t.name} - #{t.count}"
+    end
+    puts "*"*50
 
     respond_to do |format|
       format.html # show.html.erb
