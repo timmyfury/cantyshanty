@@ -18,15 +18,16 @@
 
         this.sourceNode = $(el);
 		this.opts = opts;
-        this.autoSuggestList = this.opts.autoSuggestList;
+        this.autoSuggestList = this.cleanList(this.opts.autoSuggestList);
 
         var sourceListVal = this.sourceNode.val() || "";
-        this.valueList = sourceListVal.split(',');
+        this.valueList = this.cleanList(sourceListVal.split(','));
 
         this.setupDom();
         this.attachEvents();
 
         this.valueInputNodeFocused = false;
+        this.activeSuggestNode = null;
 
         this.sourceNode.data('textBoxList', this);
 
@@ -76,7 +77,8 @@
 
         onSuggestNodeHover: function(evt){
             this.suggestListNode.find('.tbl-suggest').removeClass('tbl-suggest-active');
-            $(evt.currentTarget).addClass('tbl-suggest-active');
+            this.activeSuggestNode = $(evt.currentTarget);
+            this.activeSuggestNode.addClass('tbl-suggest-active');
         },
 
         onInputNodeFocusin: function(evt){
@@ -95,21 +97,68 @@
         },
 
         onInputNodeKey: function(evt){
-            if (evt.which == 13 || evt.which == 44) {
-                evt.preventDefault();
-                var val = jQuery.trim(this.valueInputNode.val());
-                if(val){
-                    this.valueList.push(val);
-                    this.updateRootNode();
-                    this.valueInputNode.val("");
-                }
-                this.suggestListNode.hide();
-            } else if (evt.which == 27) {
-                this.suggestListNode.hide();
-            } else {
-                this.suggestListNode.show();
+            switch(evt.which){
+                case 13:
+                case 44:
+                    this._onInputNodeEnterOrComma(evt);
+                    break;
+                case 27:
+                    this._onInputNodeEscape(evt);
+                    break;
+                case 38:
+                case 40:
+                    this._onInputNodeArrows(evt);
+                    break;
+                default:
+                    this.openSuggestList();
             }
             this.filterSuggestList();
+        },
+
+        _onInputNodeEnterOrComma: function(evt){
+            var val = jQuery.trim(this.valueInputNode.val());
+            if(val && val != ""){
+                this.valueList.push(val);
+                this.updateRootNode();
+                this.valueInputNode.val("");
+            }
+            this.closeSuggestList();
+        },
+
+        _onInputNodeEscape: function(evt){
+            this.closeSuggestList();
+        },
+
+        _onInputNodeArrows: function(evt){
+            if(this.activeSuggestNode){
+                if (evt.which == 38) { // up
+                    this.setActiveSuggestNode(this.activeSuggestNode.prev());
+                } else if (evt.which == 40) { // up
+                    this.setActiveSuggestNode(this.activeSuggestNode.next());
+                }
+            } else {
+                this.setActiveSuggestNode(this.suggestListNode.find('.tbl-suggest').first());
+            }
+
+            this.activeSuggestNode.addClass('tbl-suggest-active');
+        },
+
+        setActiveSuggestNode: function(node){
+            this.suggestListNode.find('.tbl-suggest').removeClass('tbl-suggest-active');
+            this.activeSuggestNode = node;
+            if (this.activeSuggestNode) {
+                this.valueInputNode.val(this.activeSuggestNode.data('value'));
+                this.activeSuggestNode.addClass('tbl-suggest-active');
+            }
+        },
+
+        openSuggestList: function(){
+            this.suggestListNode.show();
+        },
+
+        closeSuggestList: function(){
+            this.suggestListNode.hide();
+            this.setActiveSuggestNode(null);
         },
 
         onValueNodeClick: function(evt){
@@ -134,6 +183,7 @@
 
         populateSuggestListNode: function(){
             this.suggestListNode.empty();
+            this.autoSuggestList = this.cleanList(this.autoSuggestList);
 
             _.each(this.autoSuggestList, function(v){
                 var valueNode = $('<li class="tbl-suggest">' + v + '</li>');
@@ -152,9 +202,16 @@
             }, this);
         },
 
+        cleanList: function(list){
+            var trimmed = _.map(list, function(v){ return jQuery.trim(v); }, this),
+                cleaned = _.reject(trimmed, function(v){ return !v || v == ""; }, this),
+                unique = _.uniq(cleaned);
+            return unique;
+        },
+
         updateRootNode: function(){
-            this.valueList = _.uniq(_.reject(_.map(this.valueList, function(v){ return jQuery.trim(v); }), function(v){ return v == ""; }));
-            this.sourceNode.val(this.valueList.join());
+            this.valueList = this.cleanList(this.valueList);
+            this.sourceNode.val(this.valueList.join(","));
             this.populateValueListNode();
         }
 

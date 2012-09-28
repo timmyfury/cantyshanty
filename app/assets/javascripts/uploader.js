@@ -23,14 +23,15 @@
 		this.id = null;
 
 		var template = '<div class="file-item">' +
-							'<div><img class="file-image" /></div>' +
-							'<div><span class="file-name">' + this.name + '</span></div>' +
-							'<div><span class="file-status">' + this.status + '</span></div>' +
+		                    '<a class="file-link">' +
+    							'<div><img class="file-image" /></div>' +
+    							'<div><span class="file-status">' + this.status + '</span></div>' +
+							'</a>' +
 						'</div>';
 
 		this.node = $(template);
+		this.linkNode = this.node.find('.file-link');
 		this.imageNode = this.node.find('.file-image');
-		this.nameNode = this.node.find('.file-name');
 		this.statusNode = this.node.find('.file-status');
 
 	}; UploaderItem.prototype = {
@@ -42,13 +43,13 @@
 
 		setImage: function(image){
 			this.image = image;
-			this.imageNode.attr("src", image);
+			this.imageNode.attr('src', image);
+			this.imageNode.css('height', 'auto');
 		},
 
 		setID: function(id){
 			this.id = id;
-			var template = $('<a href="/posts/' + this.id + '">' + this.name + '</a>');
-			this.nameNode.html(template);
+			this.linkNode.attr('href', '/posts/' + this.id);
 		},
 
 		toString: function(){
@@ -176,6 +177,7 @@
 
 				item.updateStatus('uploading');
 				data.append(this.opts.name, item.file);
+				data.append('uploadPosition',  this.getPositionByItem(item));
 
 				$.ajax({
 				    url: this.opts.url,
@@ -190,9 +192,9 @@
 		},
 
 		success: function(data){
-			var item = this.getItemByName(data.image_file_name);
+			var item = this.getItemByPosition(data.queue_position);
 			item.updateStatus("complete");
-			item.setImage(data.image_sizes.small);
+			item.setImage(data.image_sizes.medium);
 			item.setID(data.id);
 
 			this.updateStatus();
@@ -212,8 +214,12 @@
 			return _.find(this.queue, function(item){ return item.status == 'queued'; }, this);
 		},
 
-		getItemByName: function(name){
-			return _.find(this.queue, function(item){ return item.name == name; }, this);
+        getPositionByItem: function(item){
+            return _.indexOf(this.queue, item);
+        },
+
+		getItemByPosition: function(position){
+			return this.queue[position];
 		}
 
 	};

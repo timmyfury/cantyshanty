@@ -40,11 +40,15 @@
     clear: both;
     visibility: hidden;
 }
+.uploader .file-list a,
+.uploader .file-list a:hover {
+	color: #777;
+}
 .uploader .file-list img {
 	background: url("<%= asset_path 'loader.gif' %>") center center no-repeat;
 	border: 1px solid #1c3260;
 	display: block;
-	min-height: 100px;
+	height: 300px;
 	width: 300px;
 }
 .uploader .file-list {
