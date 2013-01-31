@@ -21,6 +21,8 @@
 
 		<link rel="alternate" type="application/rss+xml" title="RSS" href="<%= rss_url %>">
 
+    <%= content_for?(:meta) ? yield(:meta) : '' %>
+
 		<% if content_for?(:canonical) %><link rel="canonical" href="<%= yield(:canonical) %>" /><% end %>
 
 		<%= csrf_meta_tags %>
