@@ -1,5 +1,16 @@
 <% content_for :canonical do %><%= short_url(:slug => @post.slug) %><% end %>
 
+<% content_for :meta do %>
+  <meta name="twitter:card" content="photo" />
+  <meta name="twitter:site:id" content="90432973" />
+  <meta name="twitter:creator:id" content="7353122" />
+  <meta name="twitter:url" content="<%= short_url(:slug => @post.slug) %>" />
+  <meta name="twitter:title" content="<%= @post.title %>" />
+  <meta name="twitter:description" content="<%= @post.tag_list %>" />
+  <meta name="twitter:image" content="<%= @post.image.url(:large) %>" />
+  <meta name="twitter:image:width" content="<%= @post.image.width(:large) %>" />
+  <meta name="twitter:image:height" content="<%= @post.image.height(:large) %>" />
+<% end %>
 
 <% content_for :title do %><%= @post.title %><% end %>
 
